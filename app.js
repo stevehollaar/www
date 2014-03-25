@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var http = require('http');
 var path = require('path');
 var app = express();
-var development = app.get('env') === 'development';
+var development = process.env.NODE_ENV !== 'production';
 var mongoUrl = development ? 'mongodb://localhost/www' : process.env.MONGO_URL;
 
 app.set('port', process.env.PORT || 3000);
