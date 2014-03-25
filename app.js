@@ -26,6 +26,8 @@ app.db = mongoose.connection;
 if (development){
     console.log('In development environment');
     app.use(express.errorHandler());
+} else {
+    console.log('In production environment');
 }
 
 app.get('/', routes.index);
