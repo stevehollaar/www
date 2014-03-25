@@ -7,10 +7,3 @@ var AppModel = Backbone.Model.extend({
         console.log('initialize AppModel');
     }
 });
-/**
- * @requires models/AppModel.js
- */
-
-$(function(){
-    var App = new AppModel();
-});

@@ -8,7 +8,10 @@
   "dependencies": {
     "express": "~3.4.x",
     "ejs": "*",
-    "mongoose": "3.8.x"
+    "mongoose": "3.8.x",
+    "q": "*",
+    "moment": "*",
+    "request": "*"
   },
   "engines": {
     "node": "0.11.x",
