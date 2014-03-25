@@ -20,12 +20,12 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-mongoose.connect(mongoUrl, {safe: true});
-app.db = mongoose.connection;
+// mongoose.connect(mongoUrl, {safe: true});
+// app.db = mongoose.connection;
 
 if (development){
     console.log('In development environment');
-    app.use(express.errorHandler());
+    // app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
