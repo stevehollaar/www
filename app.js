@@ -3,12 +3,13 @@
  */
 var express = require('express');
 var routes = require('./routes');
+var mongoose = require('mongoose');
 var http = require('http');
 var path = require('path');
-
 var app = express();
+var development = app.get('env') === 'development';
+var mongoUrl = development ? 'mongodb://localhost/www' : process.env.MONGO_URL;
 
-// all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,10 +20,12 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+mongoose.connect(mongoUrl, {safe: true});
+app.db = mongoose.connection;
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+if (development){
+    console.log('In development environment');
+    app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
