@@ -17,6 +17,7 @@ gulp.task('lint', function() {
 gulp.task('sass', function() {
     return gulp.src('scss/*.scss')
         .pipe(sass())
+        .pipe(concat('main.css'))
         .pipe(gulp.dest('public/css'));
 });
 
