@@ -15,29 +15,29 @@ gulp.task('lint', function() {
 
 // Compile Our Sass
 gulp.task('sass', function() {
-    return gulp.src('scss/*.scss')
+    return gulp.src('client/scss/*.scss')
         .pipe(sass())
         .pipe(concat('main.css'))
-        .pipe(gulp.dest('public/css'));
+        .pipe(gulp.dest('static/css'));
 });
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src(['js/*.js', 'js/*/*.js'])
+    return gulp.src(['client/js/*.js', 'client/js/*/*.js'])
         .pipe(resolveDependencies({
             pattern: /\* @requires [\s-]*(.*?\.js)/g
         }))
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('public/js'))
+        .pipe(gulp.dest('static/js'))
         .pipe(rename('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('public/js'));
+        .pipe(gulp.dest('static/js'));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(['js/*.js', 'js/*/*.js'], ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['sass']);
+    gulp.watch(['client/js/*.js', 'client/js/*/*.js'], ['lint', 'scripts']);
+    gulp.watch('client/scss/*.scss', ['sass']);
 });
 
 // Default Task

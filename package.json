@@ -1,10 +1,8 @@
 {
   "name": "www",
   "version": "0.0.1",
-  "main": "web.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "server/app.js",
+  "scripts": {},
   "dependencies": {
     "express": "~3.4.x",
     "ejs": "*",

@@ -1,1 +1,1 @@
-web: NODE_ENV=production node --harmony app.js
+web: NODE_ENV=production node --harmony server/app.js
