@@ -11,7 +11,6 @@ var moment = require('moment');
 var request = require('request');
 var app = express();
 var development = process.env.NODE_ENV !== 'production';
-var mongoUrl = development ? 'mongodb://localhost/www' : process.env.MONGO_URL;
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +22,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-mongoose.connect(mongoUrl, {safe: true});
+mongoose.connect(process.env.MONGO_URL, {safe: true});
 app.db = mongoose.connection;
 
 if (development){

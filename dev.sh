@@ -1,0 +1,1 @@
+NODE_ENV=development MONGO_URL=mongodb://localhost/www node --harmony server/app.js
