@@ -9,7 +9,8 @@ var path = require('path');
 var Q = require('q');
 var moment = require('moment');
 var request = require('request');
-var app = express();
+app = express();
+app.config = require('./config');
 var development = process.env.NODE_ENV !== 'production';
 
 app.set('port', process.env.PORT || 3000);
