@@ -10,7 +10,8 @@
     "ejs": "~1.0.0",
     "q": "~1.0.1",
     "request": "~2.34.0",
-    "moment": "~2.5.1"
+    "moment": "~2.5.1",
+    "node-sass": "~0.8.4"
   },
   "engines": {
     "node": "0.11.x",
@@ -22,7 +23,7 @@
   },
   "author": "Steve Hollaar",
   "devDependencies": {
-    "gulp": "~3.5.6",
+    "gulp": "~3.6.0",
     "gulp-rename": "~1.2.0",
     "gulp-concat": "~2.2.0",
     "gulp-uglify": "~0.2.1",

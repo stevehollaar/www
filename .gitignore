@@ -1,4 +1,7 @@
 node_modules
 .DS_Store
 set_keys.sh
+set_keys_dokku.sh
 unset_keys.sh
+www.sublime-project
+www.sublime-workspace
