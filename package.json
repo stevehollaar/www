@@ -13,7 +13,7 @@
     "moment": "~2.5.1"
   },
   "engines": {
-    "node": "0.11.9",
+    "node": "0.11.x",
     "npm": "1.3.x"
   },
   "repository": {
