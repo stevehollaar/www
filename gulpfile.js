@@ -4,6 +4,9 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var resolveDependencies = require('gulp-resolve-dependencies');
 var uglify = require('gulp-uglify');
+var handlebars = require('gulp-handlebars');
+var defineModule = require('gulp-define-module');
+var declare = require('gulp-declare');
 var rename = require('gulp-rename');
 
 // Lint Task
@@ -13,12 +16,24 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-// Compile Our Sass
+// Compile Sass
 gulp.task('sass', function() {
     return gulp.src('client/scss/*.scss')
         .pipe(sass())
         .pipe(concat('main.css'))
         .pipe(gulp.dest('static/css'));
+});
+
+// Process client-side templates
+gulp.task('templates', function(){
+    return gulp.src(['client/hbs/*.hbs'])
+        .pipe(handlebars())
+        .pipe(defineModule('plain'))
+        .pipe(declare({
+            namespace: 'Templates'
+        }))
+        .pipe(concat('templates.js'))
+        .pipe(gulp.dest('static/js'))
 });
 
 // Concatenate & Minify JS
@@ -36,9 +51,10 @@ gulp.task('scripts', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
+    gulp.watch('client/hbs/*.hbs', ['templates']);
     gulp.watch(['client/js/*.js', 'client/js/*/*.js'], ['lint', 'scripts']);
     gulp.watch('client/scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'sass', 'templates', 'scripts', 'watch']);

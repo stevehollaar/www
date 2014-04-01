@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../static')));
 app.config = require('./config');
 app.routes = require('./routes');
 app.schemas = require('./schemas');
@@ -39,6 +39,10 @@ app.harvesters.Foursquare.setup();
 app.get('/', app.routes.index);
 app.get('/api/checkins', app.routes.api.checkins.index);
 app.get('/api/checkins/stats', app.routes.api.checkins.stats);
+
+app.use(function(req, res, next){
+  res.send(404, 'Nothing to see here.');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

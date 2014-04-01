@@ -57,7 +57,13 @@ FoursquareHavester.prototype.updateCheckinsAll = function(){
 
 FoursquareHavester.prototype.removeCheckins = function(){
     console.log('FoursquareHavester: Removing all checkins');
-    this.checkinModel.remove({}, console.error);
+    this.checkinModel.remove({}, function(error, results){
+        if (error){
+            console.error('FoursquareHavester: ' + error);
+        } else {
+            console.log('FoursquareHavester: ' + results + ' checkins removed')
+        }
+    });
 };
 
 FoursquareHavester.prototype.updateCheckins_ = function(options){

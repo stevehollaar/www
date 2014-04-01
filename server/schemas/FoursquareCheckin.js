@@ -3,6 +3,7 @@ var moment = require('moment');
 
 module.exports = new mongoose.Schema({
     id: String,
+    createdAt: Number,
     type: String,
     isMayor: Boolean,
     timeZoneOffset: Number,

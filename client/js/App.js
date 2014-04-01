@@ -1,7 +1,12 @@
 /**
  * @requires models/AppModel.js
+ * @requires views/AppView.js
  */
 
+var App;
 $(function(){
-    var App = new AppModel();
+    App = new AppView({
+        el: document.querySelector('body'),
+        model: new AppModel()
+    });
 });
