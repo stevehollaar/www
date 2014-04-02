@@ -14,7 +14,7 @@ FoursquareHavester.prototype.setup = function(){
             console.error('FoursquareHavester: ' + error);
         } else {
             console.log('FoursquareHavester: Setting up. Currently ' + results + ' checkins');
-            if (results === 0){
+            if (results < 100){
                 this.updateCheckinsAll();
             }
             this.startPolling();
