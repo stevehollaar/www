@@ -8,7 +8,6 @@ var AppModel = Backbone.Model.extend({
     },
 
     initialize: function(){
-        console.log('initialize AppModel');
         this.set('foursquareCheckins', new FoursquareCheckinCollection());
     }
 });

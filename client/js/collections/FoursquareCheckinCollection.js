@@ -7,7 +7,6 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
     url: 'api/checkins',
 
     initialize: function(){
-        console.log('initialize FoursquareCheckinCollection')
         this.fetch();
     },
 

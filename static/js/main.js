@@ -19,7 +19,6 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
     url: 'api/checkins',
 
     initialize: function(){
-        console.log('initialize FoursquareCheckinCollection')
         this.fetch();
     },
 
@@ -38,24 +37,39 @@ var AppModel = Backbone.Model.extend({
     },
 
     initialize: function(){
-        console.log('initialize AppModel');
         this.set('foursquareCheckins', new FoursquareCheckinCollection());
     }
 });
-var AppView = Backbone.View.extend({
-
+var FoursquareCheckinsView = Backbone.View.extend({
     initialize: function(){
-        // this.render();
-        this.checkins = this.model.get('foursquareCheckins');
-        this.listenTo(this.checkins, 'updated', this.render.bind(this));
+        this.listenTo(this.collection, 'updated', this.render.bind(this));
     },
 
     render: function(){
-        console.log('rendering')
-        console.log(this.checkins.length)
         this.el.innerHTML = Templates.FoursquareCheckins({
-            checkins: this.checkins.toJSON()
+            checkins: this.collection.toJSON()
         });
+    }
+});
+/**
+ * @requires FoursquareCheckinsView.js
+ */
+
+var AppView = Backbone.View.extend({
+    foursquareCheckinsView_: null,
+
+    initialize: function(){
+        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
+        if (foursquareCheckinsEl){
+            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
+                el: foursquareCheckinsEl,
+                collection: this.model.get('foursquareCheckins')
+            });
+        }
+    },
+
+    render: function(){
+        if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
     }
 });
 /**
