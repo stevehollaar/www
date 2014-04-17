@@ -1,21 +1,29 @@
 /**
- * @requires FoursquareCheckinsView.js
+ * @requires DashboardView.js
+ * @requires ExperimentsView.js
  */
 
-var AppView = Backbone.View.extend({
-    foursquareCheckinsView_: null,
+ var AppView = Backbone.View.extend({
+    headerView_: null,
+
+    mainView_: null,
 
     initialize: function(){
-        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
-        if (foursquareCheckinsEl){
-            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
-                el: foursquareCheckinsEl,
-                collection: this.model.get('foursquareCheckins')
-            });
-        }
+        this.headerView_ = new HeaderView({
+            el: this.el.querySelector('header')
+        });
+        this.mainView_ = new MainView({
+            el: this.el.querySelector('main')
+        });
     },
 
     render: function(){
-        if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
+        this.headerView_.render();
+        this.mainView_.render();
+    },
+
+    activate: function(page){
+        this.mainView_.activate(page)
     }
-});
+ });
+

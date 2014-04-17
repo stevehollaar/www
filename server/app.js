@@ -37,6 +37,8 @@ if (development){
 app.harvesters.Foursquare.setup();
 
 app.get('/', app.routes.index);
+app.get('/dashboard', app.routes.index);
+app.get('/experiments', app.routes.index);
 app.get('/api/checkins', app.routes.api.checkins.index);
 app.get('/api/checkins/stats', app.routes.api.checkins.stats);
 

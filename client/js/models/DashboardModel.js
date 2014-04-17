@@ -2,7 +2,7 @@
  * @requires ../collections/FoursquareCheckinCollection.js
  */
 
-var AppModel = Backbone.Model.extend({
+var DashboardModel = Backbone.Model.extend({
     defaults: {
         foursquareCheckins: null
     },

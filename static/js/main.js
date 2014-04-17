@@ -1,3 +1,135 @@
+var DashboardHeaderView = Backbone.View.extend({
+    activeTimeFrame_: null,
+
+    events: {
+        'click .timeframe button': 'changeTimeFrame_'
+    },
+
+    initialize: function(){
+        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES['day'];
+    },
+
+    render: function(){
+
+    },
+
+    changeTimeFrame_: function(evt){
+        var $newTimeFrame = $(evt.currentTarget);
+        this.$el.find('.timeframe button').removeClass('active');
+        $newTimeFrame.addClass('active');
+        this.trigger('changeTimeFrame', $newTimeFrame.data('timeframe'));
+    }
+});
+
+DashboardHeaderView.TIMEFRAMES = {
+    day: 0,
+    week: 1,
+    month: 2,
+    year: 3,
+    custom: 4
+};
+var DashboardSectionView = Backbone.View.extend({
+    expanded_: false,
+
+    initialize: function(){
+        this.listenTo(this.colection, 'updated', this.render.bind(this));
+    },
+
+    render: function(){
+        this.el.innerHTML = Templates.DashboardSection()
+    }
+});
+/**
+ * @requires DashboardSectionView.js
+ */
+
+var FoursquareCheckinsView = DashboardSectionView.extend({
+    initialize: function(){
+        this.listenTo(this.collection, 'updated', this.render.bind(this));
+    },
+
+    render: function(){
+        this.el.innerHTML = Templates.FoursquareCheckins({
+            checkins: this.collection.toJSON()
+        });
+    }
+});
+/**
+ * @requires DashboardHeaderView.js
+ * @requires FoursquareCheckinsView.js
+ */
+
+var DashboardView = Backbone.View.extend({
+    dashboardHeaderView_: null,
+    foursquareCheckinsView_: null,
+
+    initialize: function(){
+        this.dashboardHeaderView_ = new DashboardHeaderView({
+            el: this.el.querySelector('header')
+        });
+        this.dashboardHeaderView_.on('changeTimeFrame', function(timeframe){
+            console.log(timeframe);
+        });
+
+        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
+        if (foursquareCheckinsEl){
+            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
+                el: foursquareCheckinsEl,
+                collection: this.model.get('foursquareCheckins')
+            });
+        }
+    },
+
+    render: function(){
+        if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
+    }
+});
+var ExperimentsView = Backbone.View.extend({
+    render: function(){
+        console.log('experiments view render');
+    }
+});
+/**
+ * @requires DashboardView.js
+ * @requires ExperimentsView.js
+ */
+
+ var AppView = Backbone.View.extend({
+    headerView_: null,
+
+    mainView_: null,
+
+    initialize: function(){
+        this.headerView_ = new HeaderView({
+            el: this.el.querySelector('header')
+        });
+        this.mainView_ = new MainView({
+            el: this.el.querySelector('main')
+        });
+    },
+
+    render: function(){
+        this.headerView_.render();
+        this.mainView_.render();
+    },
+
+    activate: function(page){
+        this.mainView_.activate(page)
+    }
+ });
+
+
+/**
+ * @requires views/AppView.js
+ */
+
+var App;
+$(function(){
+    App = new AppView({
+        el: document.querySelector('body')
+    });
+    App.render();
+});
 var FoursquareCheckinModel = Backbone.Model.extend({
     default: {
         type: null,
@@ -16,7 +148,7 @@ var FoursquareCheckinModel = Backbone.Model.extend({
 
 var FoursquareCheckinCollection = Backbone.Collection.extend({
     model: FoursquareCheckinModel,
-    url: 'api/checkins',
+    url: '/api/checkins',
 
     initialize: function(){
         this.fetch();
@@ -31,7 +163,7 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
  * @requires ../collections/FoursquareCheckinCollection.js
  */
 
-var AppModel = Backbone.Model.extend({
+var DashboardModel = Backbone.Model.extend({
     defaults: {
         foursquareCheckins: null
     },
@@ -39,50 +171,6 @@ var AppModel = Backbone.Model.extend({
     initialize: function(){
         this.set('foursquareCheckins', new FoursquareCheckinCollection());
     }
-});
-var FoursquareCheckinsView = Backbone.View.extend({
-    initialize: function(){
-        this.listenTo(this.collection, 'updated', this.render.bind(this));
-    },
-
-    render: function(){
-        this.el.innerHTML = Templates.FoursquareCheckins({
-            checkins: this.collection.toJSON()
-        });
-    }
-});
-/**
- * @requires FoursquareCheckinsView.js
- */
-
-var AppView = Backbone.View.extend({
-    foursquareCheckinsView_: null,
-
-    initialize: function(){
-        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
-        if (foursquareCheckinsEl){
-            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
-                el: foursquareCheckinsEl,
-                collection: this.model.get('foursquareCheckins')
-            });
-        }
-    },
-
-    render: function(){
-        if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
-    }
-});
-/**
- * @requires models/AppModel.js
- * @requires views/AppView.js
- */
-
-var App;
-$(function(){
-    App = new AppView({
-        el: document.querySelector('body'),
-        model: new AppModel()
-    });
 });
 var dateFormats = {
     short: 'DD MMMM - YYYY',
@@ -97,4 +185,70 @@ Handlebars.registerHelper("formatDate", function(datetime, format) {
 Handlebars.registerHelper("formatSecondsDate", function(datetime, format) {
     f = dateFormats[format];
     return moment(datetime * 1000).format(f);
+});
+var HeaderView = Backbone.View.extend({
+    events: {
+        'click nav li:not(".active")': 'navClickEvt_'
+    },
+
+    initialize: function(){
+
+    },
+
+    render: function(){
+
+    },
+
+    navClickEvt_: function(evt){
+        $('nav li').removeClass('active');
+        var $navEl = $(evt.currentTarget);
+        $navEl.addClass('active');
+        App.activate($navEl.data('page'));
+    }
+});
+/**
+ * @requires DashboardView.js
+ * @requires HeaderView.js
+ * @requires ../models/DashboardModel.js
+ */
+
+var MainView = Backbone.View.extend({
+    dashboardView_: null,
+
+    experimentsView_: null,
+
+    initialize: function(){
+        this.dashboardView_ = new DashboardView({
+            el: this.el.querySelector('.dashboard'),
+            model: new DashboardModel()
+        });
+        this.experimentsView_ = new ExperimentsView({
+            el: this.el.querySelector('.experiments')
+        });
+    },
+
+    render: function(){
+        switch (document.location.pathname){
+            case '/experiments':
+            case '/experiments/':
+                this.experimentsView_.render();
+                break;
+            default:
+                this.dashboardView_.render();
+                break;
+        }
+    },
+
+    activate: function(page){
+        switch(page){
+            case 'dashboard':
+                this.dashboardView_.$el.show();
+                this.experimentsView_.$el.hide();
+                break;
+            case 'experiments':
+                this.dashboardView_.$el.hide();
+                this.experimentsView_.$el.show();
+                break;
+        }
+    }
 });

@@ -1,0 +1,35 @@
+header {
+    p {
+        margin: 20px 10px;
+    }
+
+    nav {
+        margin: 0 auto;
+        width: 50%;
+
+        ul li {
+            display: inline-block;
+
+            &.active {
+                cursor: default;
+                font-weight: bold;
+            }
+
+            &:not(.active) {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+main .dashboard {
+    header {
+        .timeframe {
+            button {
+                &.active {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

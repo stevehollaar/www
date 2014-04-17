@@ -1,0 +1,15 @@
+header p {
+  margin: 20px 10px; }
+header nav {
+  margin: 0 auto;
+  width: 50%; }
+  header nav ul li {
+    display: inline-block; }
+    header nav ul li.active {
+      cursor: default;
+      font-weight: bold; }
+    header nav ul li:not(.active) {
+      cursor: pointer; }
+
+main .dashboard header .timeframe button.active {
+  font-weight: bold; }

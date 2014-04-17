@@ -1,4 +1,8 @@
-var FoursquareCheckinsView = Backbone.View.extend({
+/**
+ * @requires DashboardSectionView.js
+ */
+
+var FoursquareCheckinsView = DashboardSectionView.extend({
     initialize: function(){
         this.listenTo(this.collection, 'updated', this.render.bind(this));
     },
