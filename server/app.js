@@ -8,6 +8,7 @@ var request = require('request');
 var staticFavicon = require('static-favicon');
 var methodOverride = require('method-override');
 var morgan = require('morgan');
+var compression = require('compression');
 var errorHandler = require('errorhandler');
 var development = process.env.NODE_ENV !== 'production';
 
@@ -15,6 +16,7 @@ app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(compression());
 app.use(staticFavicon());
 app.use(morgan('dev'));
 app.use(methodOverride());
