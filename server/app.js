@@ -5,18 +5,19 @@ var path = require('path');
 var Q = require('q');
 var moment = require('moment');
 var request = require('request');
+var staticFavicon = require('static-favicon');
+var methodOverride = require('method-override');
+var morgan = require('morgan');
+var errorHandler = require('errorhandler');
 var development = process.env.NODE_ENV !== 'production';
 
 app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(staticFavicon());
+app.use(morgan('dev'));
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '../static')));
 app.config = require('./config');
 app.routes = require('./routes');
@@ -29,7 +30,7 @@ app.db = mongoose.connection;
 
 if (development){
     console.log('In development environment');
-    app.use(express.errorHandler());
+    app.use(errorHandler());
 } else {
     console.log('In production environment');
 }
