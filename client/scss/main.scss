@@ -1,35 +1,78 @@
-header {
-    p {
-        margin: 20px 10px;
-    }
+$color-white: #fff;
+$color-black: #070716;
+$color-black-lighter: #868695;
+$color-light-blue: #1ebad6;
+$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
-    nav {
-        margin: 0 auto;
-        width: 50%;
+body {
+    font-family: $font-family;
+}
 
-        ul li {
-            display: inline-block;
+h1.title {
+    font-size: 50px;
 
-            &.active {
-                cursor: default;
-                font-weight: bold;
-            }
-
-            &:not(.active) {
-                cursor: pointer;
-            }
-        }
+    span {
+        color: $color-light-blue;
     }
 }
 
-main .dashboard {
-    header {
-        .timeframe {
-            button {
-                &.active {
-                    font-weight: bold;
-                }
-            }
+header {
+    text-align: center;
+
+    h1 {
+        margin: 20px 0;
+    }
+}
+
+nav {
+    background-color: $color-black;
+    border-top: 2px solid $color-light-blue;
+
+    .page {
+        color: $color-white;
+        border-left: 1px solid $color-light-blue;
+        border-bottom: 1px solid $color-light-blue;
+        text-align: center;
+        background-color: $color-black;
+        padding: 15px 0;
+
+        &:last-child {
+            border-right: 1px solid $color-light-blue;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        &.active, &:hover, &:active {
+            cursor: default;
+            color: $color-black;
+            background-color: $color-light-blue;
+        }
+
+        &:not(.active) {
+            cursor: pointer;
         }
     }
+
+}
+
+.page-description-container {
+    background-color: $color-black;
+    color: $color-white;
+    border-bottom: 2px solid $color-light-blue;
+
+    .page-description {
+        // background-color: $color-black;
+        // border-left: 1px solid $color-light-blue;
+        // border-right: 1px solid $color-light-blue;
+        // border-bottom: 1px solid $color-light-blue;
+
+        &:not(.active) {
+            display: none;
+        }
+    }
+
+    transition: height 1s;
 }

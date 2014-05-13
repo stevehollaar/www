@@ -1,8 +1,19 @@
-/*
- * GET home page.
- */
-module.exports.index = function(req, res){
-    res.render('index', {});
+module.exports.dashboard = function(req, res){
+    res.render('index', {
+        page: 'dashboard'
+    });
+};
+
+module.exports.hacks = function(req, res){
+    res.render('index', {
+        page: 'hacks'
+    });
+};
+
+module.exports.resume = function(req, res){
+    res.render('index', {
+        page: 'resume'
+    });
 };
 
 module.exports.notFound = function(req, res){
