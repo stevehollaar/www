@@ -144,6 +144,8 @@ $(function(){
         model: new AppModel()
     });
     App.render();
+
+    FastClick.attach(document.body);
 });
 var FoursquareCheckinModel = Backbone.Model.extend({
     default: {

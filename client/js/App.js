@@ -10,4 +10,6 @@ $(function(){
         model: new AppModel()
     });
     App.render();
+
+    FastClick.attach(document.body);
 });
