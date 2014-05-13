@@ -8,12 +8,16 @@
 
     mainView_: null,
 
+    model: null,
+
     initialize: function(){
         this.headerView_ = new HeaderView({
-            el: this.el.querySelector('header')
+            el: this.el.querySelector('header'),
+            app: this
         });
         this.mainView_ = new MainView({
-            el: this.el.querySelector('main')
+            el: this.el.querySelector('main'),
+            app: this
         });
     },
 

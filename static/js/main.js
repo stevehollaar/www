@@ -1,3 +1,12 @@
+var AppModel = Backbone.Model.extend({
+    defaults: {
+        page: null
+    },
+
+    setPage: function(page){
+        this.set('page', page);
+    }
+});
 var DashboardHeaderView = Backbone.View.extend({
     activeTimeFrame_: null,
 
@@ -99,12 +108,16 @@ var ExperimentsView = Backbone.View.extend({
 
     mainView_: null,
 
+    model: null,
+
     initialize: function(){
         this.headerView_ = new HeaderView({
-            el: this.el.querySelector('header')
+            el: this.el.querySelector('header'),
+            app: this
         });
         this.mainView_ = new MainView({
-            el: this.el.querySelector('main')
+            el: this.el.querySelector('main'),
+            app: this
         });
     },
 
@@ -120,13 +133,15 @@ var ExperimentsView = Backbone.View.extend({
 
 
 /**
+ * @requires models/AppModel.js
  * @requires views/AppView.js
  */
 
 var App;
 $(function(){
     App = new AppView({
-        el: document.querySelector('body')
+        el: document.querySelector('body'),
+        model: new AppModel()
     });
     App.render();
 });
@@ -186,24 +201,68 @@ Handlebars.registerHelper("formatSecondsDate", function(datetime, format) {
     f = dateFormats[format];
     return moment(datetime * 1000).format(f);
 });
-var HeaderView = Backbone.View.extend({
+var NavView = Backbone.View.extend({
+    app: null,
+
     events: {
-        'click nav li:not(".active")': 'navClickEvt_'
+        'click .page:not(.active)': 'navClickEvt_'
     },
 
-    initialize: function(){
-
+    initialize: function(options){
+        this.app = options.app;
     },
 
     render: function(){
-
+        var activePage = this.$el.find('.page.active').data('page');
+        App.model.setPage(activePage, {silent: true});
     },
 
     navClickEvt_: function(evt){
-        $('nav li').removeClass('active');
+        this.$el.find('.page').removeClass('active');
         var $navEl = $(evt.currentTarget);
         $navEl.addClass('active');
-        App.activate($navEl.data('page'));
+
+        App.model.setPage($navEl.data('page'));
+    }
+});
+var PageDescriptionView = Backbone.View.extend({
+    app: null,
+
+    initialize: function(options){
+        this.app = options.app;
+        this.listenTo(this.app.model, 'change:page', this.changePageEvt_.bind(this));
+    },
+
+    changePageEvt_: function(){
+        var activePage = this.app.model.get('page');
+        this.$el.find('.page-description').removeClass('active');
+        this.$el.find('.page-description.' + activePage).addClass('active');
+    }
+});
+/**
+ * @requires NavView.js
+ * @requires PageDescriptionView.js
+ */
+
+var HeaderView = Backbone.View.extend({
+    navView_: null,
+    app: null,
+
+    initialize: function(options){
+        this.app = options.app;
+        this.navView_ = new NavView({
+            el: this.el.querySelector('nav'),
+            app: this.app
+        });
+        this.pageDescriptionView_ = new PageDescriptionView({
+            el: this.el.querySelector('.page-description-container'),
+            app: this.app
+        });
+    },
+
+    render: function(){
+        this.navView_.render();
+        this.pageDescriptionView_.render();
     }
 });
 /**

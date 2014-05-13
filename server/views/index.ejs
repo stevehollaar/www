@@ -11,20 +11,20 @@
         </div>
 
         <nav class="row">
-            <div class="page col-sm-2 col-sm-offset-3 dashboard <%= page === 'dashboard' ? 'active': '' %>">
+            <div class="page col-sm-2 col-sm-offset-3 <%= page === 'dashboard' ? 'active': '' %>" data-page="dashboard">
                 <h2>dashboard</h2>
             </div>
-            <div class="page col-sm-2 hacks <%= page === 'hacks' ? 'active': '' %>">
+            <div class="page col-sm-2 <%= page === 'hacks' ? 'active': '' %>" data-page="hacks">
                 <h2>hacks</h2>
             </div>
-            <div class="page col-sm-2 resume <%= page === 'resume' ? 'active': '' %>">
+            <div class="page col-sm-2 <%= page === 'resume' ? 'active': '' %>" data-page="resume">
                 <h2>résumé</h2>
             </div>
         </nav>
 
         <div class="page-description-container row">
             <div class="col-sm-6 col-sm-offset-3 page-description dashboard <%= page === 'dashboard' ? 'active': '' %>">
-                <p>Dashboard info here!</p>
+                <p>Dashboard coming soon!</p>
     <!--             <div class="timeframe">
                     <button data-timeframe="day" class="active">Day</button>
                     <button data-timeframe="week">Week</button>
@@ -33,15 +33,11 @@
                 </div> -->
             </div>
             <div class="col-sm-6 col-sm-offset-3 page-description hacks <%= page === 'hacks' ? 'active': '' %>">
-                <p>Hacks info here!</p>
+                <p>Things I've made - some useful, some just for fun</p>
             </div>
             <div class="col-sm-6 col-sm-offset-3 page-description resume <%= page === 'resume' ? 'active': '' %>">
-                <p>Resume info here. Some descriptions are longer than others.
-                Resume info here. Some descriptions are longer than others.
-                Resume info here. Some descriptions are longer than others.
-                Resume info here. Some descriptions are longer than others.
-                Resume info here. Some descriptions are longer than others.
-                Resume info here. Some descriptions are longer than others.</p>
+                <p>Hire me!</p>
+                <p>Print-friendly versions available in <a target="_blank" href="/resume.pdf">pdf</a> and <a target="_blank" href="/resume.html">html</a> formats</p>
             </div>
         </div>
     </header>

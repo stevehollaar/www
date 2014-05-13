@@ -1,20 +1,26 @@
+/**
+ * @requires NavView.js
+ * @requires PageDescriptionView.js
+ */
+
 var HeaderView = Backbone.View.extend({
-    events: {
-        'click nav li:not(".active")': 'navClickEvt_'
-    },
+    navView_: null,
+    app: null,
 
-    initialize: function(){
-
+    initialize: function(options){
+        this.app = options.app;
+        this.navView_ = new NavView({
+            el: this.el.querySelector('nav'),
+            app: this.app
+        });
+        this.pageDescriptionView_ = new PageDescriptionView({
+            el: this.el.querySelector('.page-description-container'),
+            app: this.app
+        });
     },
 
     render: function(){
-
-    },
-
-    navClickEvt_: function(evt){
-        $('nav li').removeClass('active');
-        var $navEl = $(evt.currentTarget);
-        $navEl.addClass('active');
-        App.activate($navEl.data('page'));
+        this.navView_.render();
+        this.pageDescriptionView_.render();
     }
 });

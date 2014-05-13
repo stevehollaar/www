@@ -1,38 +1,47 @@
 $color-white: #fff;
 $color-black: #070716;
 $color-black-lighter: #868695;
-$color-light-blue: #1ebad6;
+$color-accent: #1ebad6;
+$color-accent-darken: #0087A3;
 $font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body {
     font-family: $font-family;
 }
 
-h1.title {
-    font-size: 50px;
+a {
+    color: $color-accent;
 
-    span {
-        color: $color-light-blue;
+    &:hover {
+        color: $color-accent-darken;
     }
 }
 
-header {
+h1.title {
+    font-size: 40px;
     text-align: center;
+    margin: 10px 0;
 
-    h1 {
+    span {
+        color: $color-accent;
+    }
+
+    @media(min-width:768px){
+        font-size: 50px;
         margin: 20px 0;
     }
 }
 
 nav {
     background-color: $color-black;
-    border-top: 2px solid $color-light-blue;
+    border-top: 2px solid $color-accent;
 
     .page {
         color: $color-white;
         text-align: center;
         background-color: $color-black;
         padding: 15px 0;
+
 
         h2 {
             font-size: 18px;
@@ -42,7 +51,7 @@ nav {
         &.active, &:hover, &:active {
             cursor: default;
             color: $color-black;
-            background-color: $color-light-blue;
+            background-color: $color-accent;
         }
 
         &:not(.active) {
@@ -55,24 +64,26 @@ nav {
 .page-description-container {
     background-color: $color-black;
     color: $color-white;
-    border-bottom: 2px solid $color-light-blue;
+    border-bottom: 2px solid $color-accent;
 
 
     .page-description {
-        border-top: 2px solid $color-light-blue;
-        padding: 10px 0;
+        border-top: 2px solid $color-accent;
+        padding: 10px;
 
         &:not(.active) {
             display: none;
         }
 
         @media(min-width:768px){
-            border-left: 2px solid $color-light-blue;
-            border-right: 2px solid $color-light-blue;
+            border-left: 2px solid $color-accent;
+            border-right: 2px solid $color-accent;
         }
 
         p {
-            margin: 0;
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
