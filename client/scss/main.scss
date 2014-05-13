@@ -30,15 +30,9 @@ nav {
 
     .page {
         color: $color-white;
-        border-left: 1px solid $color-light-blue;
-        border-bottom: 1px solid $color-light-blue;
         text-align: center;
         background-color: $color-black;
         padding: 15px 0;
-
-        &:last-child {
-            border-right: 1px solid $color-light-blue;
-        }
 
         h2 {
             font-size: 18px;
@@ -63,14 +57,22 @@ nav {
     color: $color-white;
     border-bottom: 2px solid $color-light-blue;
 
+
     .page-description {
-        // background-color: $color-black;
-        // border-left: 1px solid $color-light-blue;
-        // border-right: 1px solid $color-light-blue;
-        // border-bottom: 1px solid $color-light-blue;
+        border-top: 2px solid $color-light-blue;
+        padding: 10px 0;
 
         &:not(.active) {
             display: none;
+        }
+
+        @media(min-width:768px){
+            border-left: 2px solid $color-light-blue;
+            border-right: 2px solid $color-light-blue;
+        }
+
+        p {
+            margin: 0;
         }
     }
 
