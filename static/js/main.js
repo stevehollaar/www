@@ -3,8 +3,12 @@ var AppModel = Backbone.Model.extend({
         page: null
     },
 
-    setPage: function(page){
-        this.set('page', page);
+    setPage: function(page, options){
+        options = options || {}
+
+        this.set({page: page}, options);
+
+        if (!options.silent) App.router.navigate(page);
     }
 });
 var DashboardHeaderView = Backbone.View.extend({
@@ -132,9 +136,31 @@ var ExperimentsView = Backbone.View.extend({
  });
 
 
+var Router = Backbone.Router.extend({
+    routes: {
+        '': 'dashboard',
+        'dashboard': 'dashboard',
+        'dashboard/': 'dashboard',
+        'hacks': 'hacks',
+        'resume': 'resume'
+    },
+
+    dashboard: function(){
+        App.model.set('page', 'dashboard');
+    },
+
+    hacks: function(){
+        App.model.set('page', 'hacks');
+    },
+
+    resume: function(){
+        App.model.set('page', 'resume');
+    }
+});
 /**
  * @requires models/AppModel.js
  * @requires views/AppView.js
+ * @requires Router.js
  */
 
 var App;
@@ -143,9 +169,16 @@ $(function(){
         el: document.querySelector('body'),
         model: new AppModel()
     });
-    App.render();
 
     FastClick.attach(document.body);
+
+    App.router = new Router();
+    Backbone.history.start({
+        pushState: true,
+        hashChange: false
+    });
+
+    App.render();
 });
 var FoursquareCheckinModel = Backbone.Model.extend({
     default: {
@@ -212,19 +245,23 @@ var NavView = Backbone.View.extend({
 
     initialize: function(options){
         this.app = options.app;
-    },
-
-    render: function(){
         var activePage = this.$el.find('.page.active').data('page');
-        App.model.setPage(activePage, {silent: true});
+        this.app.model.set('page', activePage);
+        this.listenTo(this.app.model, 'change:page', this.changePageEvt_.bind(this));
     },
 
     navClickEvt_: function(evt){
-        this.$el.find('.page').removeClass('active');
         var $navEl = $(evt.currentTarget);
-        $navEl.addClass('active');
 
-        App.model.setPage($navEl.data('page'));
+        this.app.model.setPage($navEl.data('page'));
+    },
+
+    changePageEvt_: function(){
+        var activePage = this.app.model.get('page');
+        var $navEl = this.$el.find('.page[data-page="' + activePage + '"]');
+
+        this.$el.find('.page').removeClass('active');
+        $navEl.addClass('active');
     }
 });
 var PageDescriptionView = Backbone.View.extend({

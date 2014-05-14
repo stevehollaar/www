@@ -3,7 +3,11 @@ var AppModel = Backbone.Model.extend({
         page: null
     },
 
-    setPage: function(page){
-        this.set('page', page);
+    setPage: function(page, options){
+        options = options || {}
+
+        this.set({page: page}, options);
+
+        if (!options.silent) App.router.navigate(page);
     }
 });

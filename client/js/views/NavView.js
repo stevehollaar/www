@@ -7,18 +7,22 @@ var NavView = Backbone.View.extend({
 
     initialize: function(options){
         this.app = options.app;
-    },
-
-    render: function(){
         var activePage = this.$el.find('.page.active').data('page');
-        App.model.setPage(activePage, {silent: true});
+        this.app.model.set('page', activePage);
+        this.listenTo(this.app.model, 'change:page', this.changePageEvt_.bind(this));
     },
 
     navClickEvt_: function(evt){
-        this.$el.find('.page').removeClass('active');
         var $navEl = $(evt.currentTarget);
-        $navEl.addClass('active');
 
-        App.model.setPage($navEl.data('page'));
+        this.app.model.setPage($navEl.data('page'));
+    },
+
+    changePageEvt_: function(){
+        var activePage = this.app.model.get('page');
+        var $navEl = this.$el.find('.page[data-page="' + activePage + '"]');
+
+        this.$el.find('.page').removeClass('active');
+        $navEl.addClass('active');
     }
 });
