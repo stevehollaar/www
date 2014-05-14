@@ -39,6 +39,14 @@ if (development){
 
 app.harvesters.Foursquare.setup();
 
+// Remove trailing slashes.
+app.use(function(req, res, next) {
+   if(req.url.substr(-1) == '/' && req.url.length > 1)
+       res.redirect(301, req.url.slice(0, -1));
+   else
+       next();
+});
+
 app.get('/', app.routes.dashboard);
 app.get('/dashboard', app.routes.dashboard);
 app.get('/hacks', app.routes.hacks);
