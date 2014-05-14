@@ -3,7 +3,7 @@ var request = require('request');
 var Q = require('q');
 
 function FoursquareHavester(){
-    this.POLL_INTERVAL = 10 * 1000;
+    this.POLL_INTERVAL = 15 * 1000;
     this.checkinModel = app.models.FoursquareCheckin;
     this.pollInterval = null;
 }
