@@ -89,3 +89,11 @@ nav {
 
     transition: height 1s;
 }
+
+main {
+    section {
+        &:not(.active){
+            display: none;
+        }
+    }
+}

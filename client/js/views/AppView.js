@@ -1,6 +1,6 @@
 /**
- * @requires DashboardView.js
- * @requires ExperimentsView.js
+ * @requires HeaderView.js
+ * @requires MainView.js
  */
 
  var AppView = Backbone.View.extend({

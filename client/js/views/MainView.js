@@ -1,46 +1,48 @@
 /**
  * @requires DashboardView.js
+ * @requires HacksView.js
+ * @requires ResumeView.js
  * @requires HeaderView.js
  * @requires ../models/DashboardModel.js
  */
-
 var MainView = Backbone.View.extend({
-    dashboardView_: null,
+    app: null,
 
-    experimentsView_: null,
+    pageViews_: null,
 
-    initialize: function(){
-        this.dashboardView_ = new DashboardView({
-            el: this.el.querySelector('.dashboard'),
-            model: new DashboardModel()
-        });
-        this.experimentsView_ = new ExperimentsView({
-            el: this.el.querySelector('.experiments')
-        });
+    initialize: function(options){
+        this.app = options.app;
+
+        this.pageViews_ = {
+            dashboard: new DashboardPageView({
+                el: this.el.querySelector('section.dashboard'),
+                model: new DashboardModel()
+            }),
+            hacks: new HacksPageView({
+                el: this.el.querySelector('section.hacks')
+            }),
+            resume: new ResumePageView({
+                el: this.el.querySelector('section.resume')
+            })
+        }
+
+        this.listenTo(this.app.model, 'change:page', this.render.bind(this));
     },
 
     render: function(){
-        switch (document.location.pathname){
-            case '/experiments':
-            case '/experiments/':
-                this.experimentsView_.render();
-                break;
-            default:
-                this.dashboardView_.render();
-                break;
-        }
+        var pageView = this.pageViews_[this.app.model.get('page')];
+        this.activatePageView_(pageView);
     },
 
-    activate: function(page){
-        switch(page){
-            case 'dashboard':
-                this.dashboardView_.$el.show();
-                this.experimentsView_.$el.hide();
-                break;
-            case 'experiments':
-                this.dashboardView_.$el.hide();
-                this.experimentsView_.$el.show();
-                break;
-        }
+    activatePageView_: function(pageView){
+        this.deactivateAllPages_();
+        pageView.activate();
+    },
+
+    deactivateAllPages_: function(){
+        _.values(this.pageViews_).forEach(function(pageView){
+            pageView.deactivate();
+        });
     }
 });
+

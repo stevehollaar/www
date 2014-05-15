@@ -6,6 +6,6 @@ var DashboardSectionView = Backbone.View.extend({
     },
 
     render: function(){
-        this.el.innerHTML = Templates.DashboardSection()
+        this.el.innerHTML = Templates.DashboardSection();
     }
 });

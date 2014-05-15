@@ -1,13 +1,13 @@
 /**
+ * @requires PageView.js
  * @requires DashboardHeaderView.js
  * @requires FoursquareCheckinsView.js
  */
-
-var DashboardView = Backbone.View.extend({
+var DashboardPageView = PageView.extend({
     dashboardHeaderView_: null,
     foursquareCheckinsView_: null,
 
-    initialize: function(){
+    initialize: function(options){
         this.dashboardHeaderView_ = new DashboardHeaderView({
             el: this.el.querySelector('header')
         });
@@ -25,6 +25,8 @@ var DashboardView = Backbone.View.extend({
     },
 
     render: function(){
-        if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
+        this.el.innerHTML = Templates.DashboardView();
+
+        // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
     }
 });
