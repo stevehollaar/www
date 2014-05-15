@@ -1,3 +1,4 @@
+
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 
@@ -24,12 +25,14 @@ nav {
     color: #fff;
     text-align: center;
     background-color: #070716;
-    padding: 15px 0; }
+    padding: 10px 0; }
     @media (min-width: 768px) {
-      nav .page:first-child {
-        border-left: 2px solid #1ebad6; }
-      nav .page:last-child {
-        border-right: 2px solid #1ebad6; } }
+      nav .page {
+        padding: 15px 0; }
+        nav .page:first-child {
+          border-left: 2px solid #1ebad6; }
+        nav .page:last-child {
+          border-right: 2px solid #1ebad6; } }
     nav .page h2 {
       font-size: 18px;
       margin: 0; }
@@ -55,11 +58,26 @@ nav {
       .page-description-container .page-description p:last-child {
         margin-bottom: 0; }
 
-main section {
-  margin: 10px auto 0;
-  max-width: 1000px; }
-  main section:not(.active) {
-    display: none; }
+main {
+  margin-bottom: 40px; }
+  main section {
+    margin: 10px auto 0;
+    max-width: 1000px; }
+    main section:not(.active) {
+      display: none; }
+
+footer {
+  border-top: 2px solid #1ebad6;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #070716; }
+  footer p {
+    line-height: 40px;
+    text-align: center;
+    color: #fff; }
 
 section.resume {
   text-align: left; }
