@@ -42,6 +42,15 @@ nav {
         background-color: $color-black;
         padding: 15px 0;
 
+        @media(min-width:768px){
+            &:first-child {
+                border-left: 2px solid $color-accent;
+            }
+
+            &:last-child {
+                border-right: 2px solid $color-accent;
+            }
+        }
 
         h2 {
             font-size: 18px;
@@ -58,42 +67,36 @@ nav {
             cursor: pointer;
         }
     }
-
 }
 
 .page-description-container {
     background-color: $color-black;
     color: $color-white;
     border-bottom: 2px solid $color-accent;
-
+    border-top: 2px solid $color-accent;
 
     .page-description {
-        border-top: 2px solid $color-accent;
         padding: 10px;
 
         &:not(.active) {
             display: none;
         }
 
-        @media(min-width:768px){
-            border-left: 2px solid $color-accent;
-            border-right: 2px solid $color-accent;
-        }
-
         p {
+            font-size: 14px;
+            text-align: center;
+
             &:last-child {
                 margin-bottom: 0;
             }
         }
     }
-
-    transition: height 1s;
 }
 
 main {
     section {
         margin: 10px auto 0;
-        max-width: 1200px;
+        max-width: 1000px;
 
         &:not(.active){
             display: none;

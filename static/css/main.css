@@ -25,6 +25,11 @@ nav {
     text-align: center;
     background-color: #070716;
     padding: 15px 0; }
+    @media (min-width: 768px) {
+      nav .page:first-child {
+        border-left: 2px solid #1ebad6; }
+      nav .page:last-child {
+        border-right: 2px solid #1ebad6; } }
     nav .page h2 {
       font-size: 18px;
       margin: 0; }
@@ -39,22 +44,20 @@ nav {
   background-color: #070716;
   color: #fff;
   border-bottom: 2px solid #1ebad6;
-  transition: height 1s; }
+  border-top: 2px solid #1ebad6; }
   .page-description-container .page-description {
-    border-top: 2px solid #1ebad6;
     padding: 10px; }
     .page-description-container .page-description:not(.active) {
       display: none; }
-    @media (min-width: 768px) {
-      .page-description-container .page-description {
-        border-left: 2px solid #1ebad6;
-        border-right: 2px solid #1ebad6; } }
-    .page-description-container .page-description p:last-child {
-      margin-bottom: 0; }
+    .page-description-container .page-description p {
+      font-size: 14px;
+      text-align: center; }
+      .page-description-container .page-description p:last-child {
+        margin-bottom: 0; }
 
 main section {
   margin: 10px auto 0;
-  max-width: 1200px; }
+  max-width: 1000px; }
   main section:not(.active) {
     display: none; }
 
