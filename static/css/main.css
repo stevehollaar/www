@@ -52,5 +52,75 @@ nav {
     .page-description-container .page-description p:last-child {
       margin-bottom: 0; }
 
-main section:not(.active) {
-  display: none; }
+main section {
+  margin: 10px auto 0;
+  max-width: 1200px; }
+  main section:not(.active) {
+    display: none; }
+
+section.resume {
+  text-align: left; }
+  section.resume table.default {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 100%; }
+    section.resume table.default td, section.resume table.default th {
+      padding: 4px 8px;
+      border: 1px solid #ddd; }
+    section.resume table.default th {
+      background-color: #eee;
+      font-weight: normal; }
+  section.resume h1 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: normal; }
+  section.resume h2 {
+    font-size: 18px;
+    font-weight: normal;
+    background-color: #333333;
+    color: #F8F8F8;
+    padding: 2px 10px;
+    position: relative; }
+  section.resume h3 {
+    font-size: 15px;
+    font-weight: normal;
+    background-color: #EBEBEB;
+    border-color: #BCBCBC #DDDDDD #DDDDDD #BCBCBC;
+    border-right: 1px solid #DDDDDD;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    padding: 1px 10px;
+    position: relative; }
+  section.resume h4 {
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    border-bottom: #000000 1px solid; }
+  section.resume h5 {
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 5px; }
+  section.resume .frigt {
+    float: right; }
+  section.resume .center {
+    text-align: center; }
+  section.resume .left {
+    text-align: left; }
+  section.resume .width100 {
+    width: 100%; }
+  section.resume .width30 {
+    width: 30%; }
+  section.resume .width50 {
+    width: 50%; }
+  section.resume .top {
+    vertical-align: top; }
+  section.resume .right {
+    text-align: right; }
+  section.resume #header {
+    border-top: #000000 1px solid;
+    border-bottom: #000000 1px solid; }
+  section.resume #header .title {
+    font-size: 18px; }
+  section.resume li {
+    margin-bottom: 2px; }

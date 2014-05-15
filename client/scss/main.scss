@@ -92,6 +92,9 @@ nav {
 
 main {
     section {
+        margin: 10px auto 0;
+        max-width: 1200px;
+
         &:not(.active){
             display: none;
         }

@@ -1,0 +1,38 @@
+section.resume {
+    text-align: left;
+
+    table {
+        &.default {
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            width:100%;
+
+            td, th {
+                padding: 4px 8px;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #eee;
+                font-weight: normal;
+            }
+        }
+    }
+
+    h1{ text-align:center; font-size: 42px; font-weight: normal;}
+    h2{ font-size:18px; font-weight:normal; background-color:#333333; color:#F8F8F8;padding:2px 10px; position:relative; }
+    h3{ font-size:15px; font-weight: normal; background-color:#EBEBEB; border-color:#BCBCBC #DDDDDD #DDDDDD #BCBCBC; border-right:1px solid #DDDDDD; border-style:solid; border-width:1px; color: #000000; padding:1px 10px; position:relative;  }
+    h4{ font-size:14px; font-weight: normal; width:100%; border-bottom:#000000 1px solid;}
+    h5{ font-size:13px; font-weight: normal; margin: 0 0 5px;}
+    .frigt{ float:right; }
+    .center { text-align:center; }
+    .left{ text-align:left; }
+    .width100{ width: 100%; }
+    .width30{ width:30%; }
+    .width50{ width:50%; }
+    .top{ vertical-align:top; }
+    .right{ text-align:right; }
+    #header{ border-top:#000000 1px solid; border-bottom:#000000 1px solid; }
+    #header .title { font-size: 18px;}
+    li{ margin-bottom:2px; }
+}

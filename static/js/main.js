@@ -79,6 +79,113 @@ var HeaderView = Backbone.View.extend({
         this.pageDescriptionView_.render();
     }
 });
+var PageView = Backbone.View.extend({
+    activate: function(){
+        this.$el.addClass('active');
+    },
+
+    deactivate: function(){
+        this.$el.removeClass('active');
+    }
+});
+var DashboardHeaderView = Backbone.View.extend({
+    activeTimeFrame_: null,
+
+    events: {
+        'click .timeframe button': 'changeTimeFrame_'
+    },
+
+    initialize: function(){
+        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES['day'];
+    },
+
+    render: function(){
+
+    },
+
+    changeTimeFrame_: function(evt){
+        var $newTimeFrame = $(evt.currentTarget);
+        this.$el.find('.timeframe button').removeClass('active');
+        $newTimeFrame.addClass('active');
+        this.trigger('changeTimeFrame', $newTimeFrame.data('timeframe'));
+    }
+});
+
+DashboardHeaderView.TIMEFRAMES = {
+    day: 0,
+    week: 1,
+    month: 2,
+    year: 3,
+    custom: 4
+};
+var DashboardSectionView = Backbone.View.extend({
+    expanded_: false,
+
+    initialize: function(){
+        this.listenTo(this.colection, 'updated', this.render.bind(this));
+    },
+
+    render: function(){
+        this.el.innerHTML = Templates.DashboardSection();
+    }
+});
+/**
+ * @requires DashboardSectionView.js
+ */
+
+var FoursquareCheckinsView = DashboardSectionView.extend({
+    initialize: function(){
+        this.listenTo(this.collection, 'updated', this.render.bind(this));
+    },
+
+    render: function(){
+        this.el.innerHTML = Templates.FoursquareCheckins({
+            checkins: this.collection.toJSON()
+        });
+    }
+});
+/**
+ * @requires PageView.js
+ * @requires DashboardHeaderView.js
+ * @requires FoursquareCheckinsView.js
+ */
+var DashboardPageView = PageView.extend({
+    dashboardHeaderView_: null,
+    foursquareCheckinsView_: null,
+
+    initialize: function(options){
+        this.dashboardHeaderView_ = new DashboardHeaderView({
+            el: this.el.querySelector('header')
+        });
+        this.dashboardHeaderView_.on('changeTimeFrame', function(timeframe){
+            console.log(timeframe);
+        });
+
+        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
+        if (foursquareCheckinsEl){
+            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
+                el: foursquareCheckinsEl,
+                collection: this.model.get('foursquareCheckins')
+            });
+        }
+    },
+
+    render: function(){
+        this.el.innerHTML = Templates.DashboardView();
+
+        // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
+    }
+});
+/**
+ * @requires PageView.js
+ */
+var HacksPageView = PageView.extend({
+});
+/**
+ * @requires PageView.js
+ */
+var ResumePageView = PageView.extend({
+});
 var FoursquareCheckinModel = Backbone.Model.extend({
     default: {
         type: null,
@@ -122,9 +229,9 @@ var DashboardModel = Backbone.Model.extend({
     }
 });
 /**
- * @requires DashboardView.js
- * @requires HacksView.js
- * @requires ResumeView.js
+ * @requires DashboardPageView.js
+ * @requires HacksPageView.js
+ * @requires ResumePageView.js
  * @requires HeaderView.js
  * @requires ../models/DashboardModel.js
  */
@@ -261,111 +368,4 @@ Handlebars.registerHelper("formatDate", function(datetime, format) {
 Handlebars.registerHelper("formatSecondsDate", function(datetime, format) {
     f = dateFormats[format];
     return moment(datetime * 1000).format(f);
-});
-var DashboardHeaderView = Backbone.View.extend({
-    activeTimeFrame_: null,
-
-    events: {
-        'click .timeframe button': 'changeTimeFrame_'
-    },
-
-    initialize: function(){
-        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES['day'];
-    },
-
-    render: function(){
-
-    },
-
-    changeTimeFrame_: function(evt){
-        var $newTimeFrame = $(evt.currentTarget);
-        this.$el.find('.timeframe button').removeClass('active');
-        $newTimeFrame.addClass('active');
-        this.trigger('changeTimeFrame', $newTimeFrame.data('timeframe'));
-    }
-});
-
-DashboardHeaderView.TIMEFRAMES = {
-    day: 0,
-    week: 1,
-    month: 2,
-    year: 3,
-    custom: 4
-};
-var PageView = Backbone.View.extend({
-    activate: function(){
-        this.$el.addClass('active');
-    },
-
-    deactivate: function(){
-        this.$el.removeClass('active');
-    }
-});
-var DashboardSectionView = Backbone.View.extend({
-    expanded_: false,
-
-    initialize: function(){
-        this.listenTo(this.colection, 'updated', this.render.bind(this));
-    },
-
-    render: function(){
-        this.el.innerHTML = Templates.DashboardSection();
-    }
-});
-/**
- * @requires DashboardSectionView.js
- */
-
-var FoursquareCheckinsView = DashboardSectionView.extend({
-    initialize: function(){
-        this.listenTo(this.collection, 'updated', this.render.bind(this));
-    },
-
-    render: function(){
-        this.el.innerHTML = Templates.FoursquareCheckins({
-            checkins: this.collection.toJSON()
-        });
-    }
-});
-/**
- * @requires PageView.js
- * @requires DashboardHeaderView.js
- * @requires FoursquareCheckinsView.js
- */
-var DashboardPageView = PageView.extend({
-    dashboardHeaderView_: null,
-    foursquareCheckinsView_: null,
-
-    initialize: function(options){
-        this.dashboardHeaderView_ = new DashboardHeaderView({
-            el: this.el.querySelector('header')
-        });
-        this.dashboardHeaderView_.on('changeTimeFrame', function(timeframe){
-            console.log(timeframe);
-        });
-
-        var foursquareCheckinsEl = this.el.querySelector('.foursquare-checkins');
-        if (foursquareCheckinsEl){
-            this.foursquareCheckinsView_ = new FoursquareCheckinsView({
-                el: foursquareCheckinsEl,
-                collection: this.model.get('foursquareCheckins')
-            });
-        }
-    },
-
-    render: function(){
-        this.el.innerHTML = Templates.DashboardView();
-
-        // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
-    }
-});
-/**
- * @requires PageView.js
- */
-var HacksPageView = PageView.extend({
-});
-/**
- * @requires PageView.js
- */
-var ResumePageView = PageView.extend({
 });

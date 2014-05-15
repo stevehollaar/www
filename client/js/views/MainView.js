@@ -1,7 +1,7 @@
 /**
- * @requires DashboardView.js
- * @requires HacksView.js
- * @requires ResumeView.js
+ * @requires DashboardPageView.js
+ * @requires HacksPageView.js
+ * @requires ResumePageView.js
  * @requires HeaderView.js
  * @requires ../models/DashboardModel.js
  */
