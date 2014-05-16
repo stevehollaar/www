@@ -4,10 +4,15 @@ module.exports.dashboard = function(req, res){
     });
 };
 
-module.exports.hacks = function(req, res){
-    res.render('index', {
-        page: 'hacks'
-    });
+module.exports.hacks = {
+    index: function(req, res){
+        res.render('index', {
+            page: 'hacks'
+        })
+    },
+    falling: function(requ, res){
+        res.sendfile('static/hacks/falling.html');
+    }
 };
 
 module.exports.resume = function(req, res){

@@ -20,7 +20,6 @@ app.use(compression());
 app.use(staticFavicon());
 app.use(morgan('dev'));
 app.use(methodOverride());
-app.use(express.static(path.join(__dirname, '../static')));
 app.config = require('./config');
 app.routes = require('./routes');
 app.schemas = require('./schemas');
@@ -49,10 +48,13 @@ app.use(function(req, res, next) {
 
 app.get('/', app.routes.dashboard);
 app.get('/dashboard', app.routes.dashboard);
-app.get('/hacks', app.routes.hacks);
+app.get('/hacks', app.routes.hacks.index);
+app.get('/hacks/falling', app.routes.hacks.falling);
 app.get('/resume', app.routes.resume);
 app.get('/api/checkins', app.routes.api.checkins.index);
 app.get('/api/checkins/stats', app.routes.api.checkins.stats);
+
+app.use(express.static(path.join(__dirname, '../static')));
 
 app.use(function(req, res, next){
   res.send(404, 'Nothing to see here.');

@@ -1,8 +1,58 @@
-section.hacks {
+@import 'main';
 
+section.hacks {
     .hack {
-        img {
-            width: 300px;
+        margin-top: 20px;
+        position: relative;
+
+        .connecting-line {
+            content: '';
+            border: 1px solid $color-accent;
+            position: absolute;
+            z-index: -1;
+
+            @media(max-width:767px){
+                top: 25%;
+                bottom: 25%;
+                left: 50%;
+            }
+
+            @media(min-width:768px){
+                top: 50%;
+                left: 25%;
+                right: 25%;
+            }
+        }
+
+        .hack-image {
+            img {
+                height: 250px;
+                display: block;
+                margin: 0 auto;
+                border: 2px solid $color-accent;
+            }
+        }
+
+        .hack-description-container {
+            display:table !important;
+
+            @media(max-width:767px){
+                margin-top: 20px;
+            }
+
+            @media(min-width:768px){
+                height: 250px;
+            }
+        }
+
+        .hack-description {
+            display:table-cell;
+            vertical-align:middle;
+            text-align:center;
+            padding: 10px;
+            color: $color-white;
+            background-color: rgba(7,7,22,1);
+            border: 2px solid $color-accent;
         }
     }
 }

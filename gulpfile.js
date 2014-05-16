@@ -19,7 +19,7 @@ gulp.task('lint', function() {
 // Compile Sass
 gulp.task('sass', function() {
     return gulp.src('client/scss/*.scss')
-        .pipe(sass())
+        .pipe(sass({errLogToConsole: true}))
         .pipe(concat('main.css'))
         .pipe(gulp.dest('static/css'));
 });
