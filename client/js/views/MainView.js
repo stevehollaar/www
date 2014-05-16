@@ -30,6 +30,10 @@ var MainView = Backbone.View.extend({
     },
 
     render: function(){
+        _.values(this.pageViews_).forEach(function(pageView){
+            pageView.render();
+        });
+
         var pageView = this.pageViews_[this.app.model.get('page')];
         this.activatePageView_(pageView);
     },

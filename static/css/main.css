@@ -1,3 +1,5 @@
+section.hacks .hack img {
+  width: 300px; }
 
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
@@ -20,7 +22,7 @@ h1.title {
 
 nav {
   background-color: #070716;
-  border-top: 2px solid #1ebad6; }
+  border-top: 1px solid #1ebad6; }
   nav .page {
     color: #fff;
     text-align: center;
@@ -28,11 +30,7 @@ nav {
     padding: 10px 0; }
     @media (min-width: 768px) {
       nav .page {
-        padding: 15px 0; }
-        nav .page:first-child {
-          border-left: 2px solid #1ebad6; }
-        nav .page:last-child {
-          border-right: 2px solid #1ebad6; } }
+        padding: 15px 0; } }
     nav .page h2 {
       font-size: 18px;
       margin: 0; }
@@ -46,8 +44,8 @@ nav {
 .page-description-container {
   background-color: #070716;
   color: #fff;
-  border-bottom: 2px solid #1ebad6;
-  border-top: 2px solid #1ebad6; }
+  border-bottom: 1px solid #1ebad6;
+  border-top: 1px solid #1ebad6; }
   .page-description-container .page-description {
     padding: 10px; }
     .page-description-container .page-description:not(.active) {
@@ -59,15 +57,15 @@ nav {
         margin-bottom: 0; }
 
 main {
-  margin-bottom: 40px; }
+  margin: 15px 25px 40px; }
   main section {
-    margin: 10px auto 0;
+    margin: 0 auto;
     max-width: 1000px; }
     main section:not(.active) {
       display: none; }
 
 footer {
-  border-top: 2px solid #1ebad6;
+  border-top: 1px solid #1ebad6;
   position: fixed;
   bottom: 0;
   left: 0;

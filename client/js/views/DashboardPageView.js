@@ -25,7 +25,8 @@ var DashboardPageView = PageView.extend({
     },
 
     render: function(){
-        this.el.innerHTML = Templates.DashboardView();
+        console.log('rendering DashboardPageView')
+        this.el.innerHTML = Templates.DashboardPageView();
 
         // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
     }

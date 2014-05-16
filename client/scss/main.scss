@@ -35,7 +35,7 @@ h1.title {
 
 nav {
     background-color: $color-black;
-    border-top: 2px solid $color-accent;
+    border-top: 1px solid $color-accent;
 
     .page {
         color: $color-white;
@@ -45,14 +45,6 @@ nav {
 
         @media(min-width:768px){
             padding: 15px 0;
-
-            &:first-child {
-                border-left: 2px solid $color-accent;
-            }
-
-            &:last-child {
-                border-right: 2px solid $color-accent;
-            }
         }
 
         h2 {
@@ -75,8 +67,8 @@ nav {
 .page-description-container {
     background-color: $color-black;
     color: $color-white;
-    border-bottom: 2px solid $color-accent;
-    border-top: 2px solid $color-accent;
+    border-bottom: 1px solid $color-accent;
+    border-top: 1px solid $color-accent;
 
     .page-description {
         padding: 10px;
@@ -97,20 +89,20 @@ nav {
 }
 
 main {
+    margin: 15px 25px $footer-height;
+
     section {
-        margin: 10px auto 0;
+        margin: 0 auto;
         max-width: 1000px;
 
         &:not(.active){
             display: none;
         }
     }
-
-    margin-bottom: $footer-height;
 }
 
 footer {
-    border-top: 2px solid $color-accent;
+    border-top: 1px solid $color-accent;
     position: fixed;
     bottom: 0;
     left: 0;

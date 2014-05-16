@@ -171,7 +171,8 @@ var DashboardPageView = PageView.extend({
     },
 
     render: function(){
-        this.el.innerHTML = Templates.DashboardView();
+        console.log('rendering DashboardPageView')
+        this.el.innerHTML = Templates.DashboardPageView();
 
         // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
     }
@@ -260,6 +261,10 @@ var MainView = Backbone.View.extend({
     },
 
     render: function(){
+        _.values(this.pageViews_).forEach(function(pageView){
+            pageView.render();
+        });
+
         var pageView = this.pageViews_[this.app.model.get('page')];
         this.activatePageView_(pageView);
     },
