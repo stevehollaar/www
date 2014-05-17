@@ -90,10 +90,10 @@ nav {
 }
 
 main {
-    margin: 15px 25px $footer-height;
+    margin: 15px 25px ($footer-height + 15px);
 
     section {
-        margin: 0 auto;
+        margin: 0 auto ;
         max-width: 1000px;
 
         &:not(.active){
