@@ -97,6 +97,10 @@ section.hacks .hack {
     display: block;
     margin: 0 auto;
     border: 2px solid #1ebad6; }
+    @media (max-width: 767px) {
+      section.hacks .hack .hack-image img {
+        max-width: 100%;
+        height: auto; } }
   section.hacks .hack .hack-description-container {
     display: table !important; }
     @media (max-width: 767px) {

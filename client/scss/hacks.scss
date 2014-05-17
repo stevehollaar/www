@@ -30,6 +30,11 @@ section.hacks {
                 display: block;
                 margin: 0 auto;
                 border: 2px solid $color-accent;
+
+                @media(max-width:767px){
+                    max-width: 100%;
+                    height: auto;
+                }
             }
         }
 
