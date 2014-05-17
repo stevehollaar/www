@@ -101,24 +101,29 @@ section.hacks .hack {
       section.hacks .hack .hack-image img {
         max-width: 100%;
         height: auto; } }
-  section.hacks .hack .hack-description-container {
-    display: table !important; }
-    @media (max-width: 767px) {
-      section.hacks .hack .hack-description-container {
-        margin-top: 20px; } }
-    @media (min-width: 768px) {
-      section.hacks .hack .hack-description-container {
-        height: 250px; } }
-    section.hacks .hack .hack-description-container .hack-description {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      padding: 10px 15px;
-      color: #fff;
-      background-color: #070716;
-      border: 2px solid #1ebad6; }
-      section.hacks .hack .hack-description-container .hack-description .hack-title {
-        font-size: 24px; }
+  @media (max-width: 767px) {
+    section.hacks .hack .hack-description-container {
+      margin-top: 20px; } }
+  @media (min-width: 768px) {
+    section.hacks .hack .hack-description-container {
+      height: 250px; }
+      section.hacks .hack .hack-description-container:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.5em;
+        /* Adjusts for spacing */ } }
+  section.hacks .hack .hack-description-container .hack-description {
+    vertical-align: middle;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #070716;
+    border: 2px solid #1ebad6; }
+    section.hacks .hack .hack-description-container .hack-description .hack-title {
+      font-size: 24px; }
 
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }

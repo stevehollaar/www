@@ -39,20 +39,26 @@ section.hacks {
         }
 
         .hack-description-container {
-            display:table !important;
-
             @media(max-width:767px){
                 margin-top: 20px;
             }
 
             @media(min-width:768px){
                 height: 250px;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                    margin-right: -0.5em; /* Adjusts for spacing */
+                }
             }
 
             .hack-description {
-                display:table-cell;
                 vertical-align:middle;
-                text-align:center;
+                display: inline-block;
+                width: 100%;
                 padding: 10px 15px;
                 color: $color-white;
                 background-color: rgba(7,7,22,1);
