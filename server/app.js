@@ -10,7 +10,7 @@ var methodOverride = require('method-override');
 var morgan = require('morgan');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
-var development = process.env.NODE_ENV !== 'production';
+DEVELOPMENT = process.env.NODE_ENV !== 'production';
 
 app = express();
 app.set('port', process.env.PORT || 3000);
@@ -29,7 +29,7 @@ app.harvesters = require('./harvesters');
 mongoose.connect(process.env.MONGO_URL, {safe: true});
 app.db = mongoose.connection;
 
-if (development){
+if (DEVELOPMENT){
     console.log('In development environment');
     app.use(errorHandler());
 } else {
