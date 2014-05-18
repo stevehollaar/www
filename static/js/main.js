@@ -8,7 +8,11 @@ var AppModel = Backbone.Model.extend({
 
         this.set({page: page}, options);
 
-        if (!options.silent) App.router.navigate(page);
+        if (!options.silent){
+            App.router.navigate(page);
+
+            if (ga) ga('send', 'pageview');
+        }
     }
 });
 var NavView = Backbone.View.extend({
