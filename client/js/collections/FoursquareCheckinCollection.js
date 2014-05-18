@@ -12,6 +12,6 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
 
     parse: function(results){
         this.set(results);
-        this.trigger('updated')
+        this.trigger('updated');
     }
 });

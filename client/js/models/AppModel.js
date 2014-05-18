@@ -4,7 +4,7 @@ var AppModel = Backbone.Model.extend({
     },
 
     setPage: function(page, options){
-        options = options || {}
+        options = options || {};
 
         this.set({page: page}, options);
 

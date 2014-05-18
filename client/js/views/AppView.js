@@ -27,7 +27,6 @@
     },
 
     activate: function(page){
-        this.mainView_.activate(page)
+        this.mainView_.activate(page);
     }
  });
-

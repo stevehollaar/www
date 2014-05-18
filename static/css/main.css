@@ -1,78 +1,9 @@
-body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
-
-a {
-  color: #1ebad6; }
-  a:hover {
-    color: #0087A3; }
-
-h1.title {
-  font-size: 40px;
-  text-align: center;
-  margin: 10px 0; }
-  h1.title span {
-    color: #1ebad6; }
-  @media (min-width: 768px) {
-    h1.title {
-      font-size: 50px;
-      margin: 20px 0; } }
-
-nav {
-  background-color: #070716;
-  border-top: 1px solid #1ebad6; }
-  nav .page {
-    color: #fff;
-    text-align: center;
-    background-color: #070716;
-    padding: 10px 0; }
-    @media (min-width: 768px) {
-      nav .page {
-        padding: 15px 0; } }
-    nav .page h2 {
-      font-size: 18px;
-      margin: 0; }
-    nav .page.active, nav .page:hover, nav .page:active {
-      cursor: default;
-      color: #070716;
-      background-color: #1ebad6; }
-    nav .page:not(.active) {
-      cursor: pointer; }
-
-.page-description-container {
-  background-color: #070716;
-  color: #fff;
-  border-bottom: 1px solid #1ebad6;
-  border-top: 1px solid #1ebad6; }
-  .page-description-container .page-description {
-    padding: 10px; }
-    .page-description-container .page-description:not(.active) {
-      display: none; }
-    .page-description-container .page-description p {
-      font-size: 14px;
-      text-align: center; }
-      .page-description-container .page-description p:last-child {
-        margin-bottom: 0; }
-
-main {
-  margin: 15px 25px 55px; }
-  main section {
-    margin: 0 auto;
-    max-width: 1000px; }
-    main section:not(.active) {
-      display: none; }
-
-footer {
-  border-top: 1px solid #1ebad6;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background-color: rgba(7, 7, 22, 0.7); }
-  footer p {
-    line-height: 40px;
-    text-align: center;
-    color: #fff; }
+section.dashboard header {
+  text-align: center; }
+  section.dashboard header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #aaa; }
 
 section.hacks .hack {
   margin-top: 20px;
@@ -267,3 +198,4 @@ section.resume {
     font-size: 18px; }
   section.resume li {
     margin-bottom: 2px; }
+

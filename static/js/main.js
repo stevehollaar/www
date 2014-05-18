@@ -4,7 +4,7 @@ var AppModel = Backbone.Model.extend({
     },
 
     setPage: function(page, options){
-        options = options || {}
+        options = options || {};
 
         this.set({page: page}, options);
 
@@ -96,7 +96,7 @@ var DashboardHeaderView = Backbone.View.extend({
     },
 
     initialize: function(){
-        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES['day'];
+        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES.day;
     },
 
     render: function(){
@@ -144,19 +144,34 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
         });
     }
 });
+var CurrentTimeView = Backbone.View.extend({
+    initialize: function(){
+        setInterval(this.render.bind(this), 10);
+    },
+
+    render: function(){
+        this.el.innerHTML = moment().format('h:mm:ss.Sa');
+    }
+});
 /**
  * @requires PageView.js
  * @requires DashboardHeaderView.js
  * @requires FoursquareCheckinsView.js
+ * @requires CurrentTimeView.js
  */
 var DashboardPageView = PageView.extend({
     dashboardHeaderView_: null,
     foursquareCheckinsView_: null,
+    currentTimeView_: null,
 
     initialize: function(options){
         this.dashboardHeaderView_ = new DashboardHeaderView({
             el: this.el.querySelector('header')
         });
+        this.currentTimeView_ = new CurrentTimeView({
+            el: this.el.querySelector('.current-time')
+        });
+
         this.dashboardHeaderView_.on('changeTimeFrame', function(timeframe){
             console.log(timeframe);
         });
@@ -171,8 +186,9 @@ var DashboardPageView = PageView.extend({
     },
 
     render: function(){
-        console.log('rendering DashboardPageView')
-        this.el.innerHTML = Templates.DashboardPageView();
+        // this.el.innerHTML = Templates.DashboardPageView();
+
+
 
         // if (this.foursquareCheckinsView_) this.foursquareCheckinsView_.render();
     }
@@ -213,7 +229,7 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
 
     parse: function(results){
         this.set(results);
-        this.trigger('updated')
+        this.trigger('updated');
     }
 });
 /**
@@ -255,7 +271,7 @@ var MainView = Backbone.View.extend({
             resume: new ResumePageView({
                 el: this.el.querySelector('section.resume')
             })
-        }
+        };
 
         this.listenTo(this.app.model, 'change:page', this.render.bind(this));
     },
@@ -311,10 +327,9 @@ var MainView = Backbone.View.extend({
     },
 
     activate: function(page){
-        this.mainView_.activate(page)
+        this.mainView_.activate(page);
     }
  });
-
 
 var Router = Backbone.Router.extend({
     routes: {

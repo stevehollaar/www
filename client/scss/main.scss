@@ -1,11 +1,4 @@
-$color-white: #fff;
-$color-black: #070716;
-$color-black-transparent: rgba(7, 7, 22, 0.7);
-$color-black-lighter: #868695;
-$color-accent: #1ebad6;
-$color-accent-darken: #0087A3;
-$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$footer-height: 40px;
+@import 'variables';
 
 body {
     font-family: $font-family;

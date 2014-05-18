@@ -6,7 +6,7 @@ var DashboardHeaderView = Backbone.View.extend({
     },
 
     initialize: function(){
-        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES['day'];
+        this.activeTimeFrame_ = DashboardHeaderView.TIMEFRAMES.day;
     },
 
     render: function(){

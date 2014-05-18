@@ -24,7 +24,7 @@ var MainView = Backbone.View.extend({
             resume: new ResumePageView({
                 el: this.el.querySelector('section.resume')
             })
-        }
+        };
 
         this.listenTo(this.app.model, 'change:page', this.render.bind(this));
     },
