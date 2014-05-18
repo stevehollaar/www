@@ -10,8 +10,7 @@ var AppModel = Backbone.Model.extend({
 
         if (!options.silent){
             App.router.navigate(page);
-
-            if (ga) ga('send', 'pageview');
+            if (ga) ga('send', 'pageview', '/' + page);
         }
     }
 });
