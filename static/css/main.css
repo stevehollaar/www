@@ -203,7 +203,8 @@ section.resume, #resume {
     border-top: #000000 1px solid;
     border-bottom: #000000 1px solid; }
   section.resume #header .title, #resume #header .title {
-    font-size: 18px; }
+    font-size: 18px;
+    margin: 0; }
   section.resume li, #resume li {
     margin-bottom: 2px; }
 
