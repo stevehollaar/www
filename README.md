@@ -1,5 +1,5 @@
-www.stevehollaar.com
+stevehollaar.com
 ===
-A work-in-progress towards a redesigned personal site (not yet hosted).
+A work-in-progress towards a redesigned personal site.
 
 

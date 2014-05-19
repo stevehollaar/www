@@ -48,9 +48,13 @@ app.use(function(req, res, next) {
 
 app.get('/', app.routes.dashboard);
 app.get('/dashboard', app.routes.dashboard);
+
 app.get('/hacks', app.routes.hacks.index);
 app.get('/hacks/falling', app.routes.hacks.falling);
-app.get('/resume', app.routes.resume);
+
+app.get('/resume', app.routes.resume.index);
+app.get('/resume.html', app.routes.resume.html);
+
 app.get('/api/checkins', app.routes.api.checkins.index);
 app.get('/api/checkins/stats', app.routes.api.checkins.stats);
 

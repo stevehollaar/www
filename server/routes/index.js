@@ -15,10 +15,15 @@ module.exports.hacks = {
     }
 };
 
-module.exports.resume = function(req, res){
-    res.render('index', {
-        page: 'resume'
-    });
+module.exports.resume = {
+    index: function(req, res){
+        res.render('index', {
+            page: 'resume'
+        })
+    },
+    html: function(req, res){
+        res.render('resume');
+    }
 };
 
 module.exports.notFound = function(req, res){
