@@ -10,8 +10,8 @@ module.exports.hacks = {
             page: 'hacks'
         })
     },
-    falling: function(requ, res){
-        res.sendfile('static/hacks/falling.html');
+    falling: function(req, res){
+        res.sendfile('static/hacks/falling/index.html');
     }
 };
 
