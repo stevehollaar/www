@@ -51,6 +51,7 @@ app.get('/dashboard', app.routes.dashboard);
 
 app.get('/hacks', app.routes.hacks.index);
 app.get('/hacks/falling', app.routes.hacks.falling);
+app.get('/hacks/minesweeper', app.routes.hacks.minesweeper);
 
 app.get('/resume', app.routes.resume.index);
 app.get('/resume.html', app.routes.resume.html);

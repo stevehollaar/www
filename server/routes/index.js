@@ -12,6 +12,9 @@ module.exports.hacks = {
     },
     falling: function(req, res){
         res.sendfile('static/hacks/falling/index.html');
+    },
+    minesweeper: function(req, res){
+        res.sendfile('static/hacks/minesweeper/index.html');
     }
 };
 
