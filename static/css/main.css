@@ -8,7 +8,7 @@ section.dashboard header {
     color: #aaa; }
 
 section.hacks .hack {
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative; }
   section.hacks .hack .connecting-line {
     content: '';
