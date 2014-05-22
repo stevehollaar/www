@@ -1,4 +1,16 @@
-<h2>Checked in to these places:</h2>
-{{#each checkins}}
-    <p><strong>{{venue.name}}</strong> {{formatSecondsDate createdAt 'long'}}</p>
-{{/each}}
+{{#if checkins}}
+    <h2>checked in to {{checkins.length}} place{{#unless singleCheckin}}s{{/unless}}</h2>
+    <ul class="checkins">
+        {{#each checkins}}
+            <li>
+                {{#if venue.categories.[0]}}
+                    <img src="{{venue.categories.[0].icon.prefix}}64{{venue.categories.[0].icon.suffix}}">
+                {{/if}}
+                <strong>{{venue.name}}</strong>
+                {{formatSecondsDate createdAt 'timeOnly'}}</li>
+
+        {{/each}}
+    </ul>
+{{else}}
+    <h2>Haven't checked in anywhere</h2>
+{{/if}}

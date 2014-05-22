@@ -1,6 +1,7 @@
 var dateFormats = {
     short: 'DD MMMM - YYYY',
-    long: 'ddd MMM DD, YYYY h:mma'
+    long: 'ddd MMM DD, YYYY h:mma',
+    timeOnly: 'h:mma'
 };
 
 Handlebars.registerHelper("formatDate", function(datetime, format) {

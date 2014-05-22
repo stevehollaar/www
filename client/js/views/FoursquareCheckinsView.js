@@ -8,8 +8,14 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
     },
 
     render: function(){
-        this.el.innerHTML = Templates.FoursquareCheckins({
-            checkins: this.collection.toJSON()
-        });
+        this.el.innerHTML = Templates.FoursquareCheckins(this.getTemplateData_());
+    },
+
+    getTemplateData_: function(){
+        var data = {
+            checkins: this.collection.toJSON(),
+            singleCheckin: this.collection.length === 1
+        };
+        return data;
     }
 });

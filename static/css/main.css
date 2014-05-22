@@ -6,6 +6,26 @@ section.dashboard header {
     margin: 0;
     font-size: 16px;
     color: #aaa; }
+section.dashboard .construction {
+  margin-top: 20px;
+  text-align: center; }
+section.dashboard .foursquare-checkins {
+  margin-top: 10px;
+  color: #070716;
+  background-color: #F0B038;
+  padding: 10px; }
+  section.dashboard .foursquare-checkins h2 {
+    margin: 0;
+    font-size: 24px; }
+  section.dashboard .foursquare-checkins ul.checkins {
+    margin-top: 10px;
+    list-style-type: none;
+    padding-left: 15px; }
+    section.dashboard .foursquare-checkins ul.checkins li {
+      height: 32px;
+      line-height: 32px; }
+      section.dashboard .foursquare-checkins ul.checkins li img {
+        height: 32px; }
 
 section.hacks .hack {
   margin-top: 30px;

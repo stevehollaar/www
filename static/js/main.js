@@ -142,9 +142,15 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
     },
 
     render: function(){
-        this.el.innerHTML = Templates.FoursquareCheckins({
-            checkins: this.collection.toJSON()
-        });
+        this.el.innerHTML = Templates.FoursquareCheckins(this.getTemplateData_());
+    },
+
+    getTemplateData_: function(){
+        var data = {
+            checkins: this.collection.toJSON(),
+            singleCheckin: this.collection.length === 1
+        };
+        return data;
     }
 });
 var CurrentTimeView = Backbone.View.extend({
@@ -227,7 +233,11 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
     url: '/api/checkins',
 
     initialize: function(){
-        this.fetch();
+        this.fetch({
+            data: {
+                fromDate: moment({hour: 0}).valueOf()
+            }
+        });
     },
 
     parse: function(results){
@@ -380,7 +390,8 @@ $(function(){
 });
 var dateFormats = {
     short: 'DD MMMM - YYYY',
-    long: 'ddd MMM DD, YYYY h:mma'
+    long: 'ddd MMM DD, YYYY h:mma',
+    timeOnly: 'h:mma'
 };
 
 Handlebars.registerHelper("formatDate", function(datetime, format) {

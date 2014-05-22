@@ -7,7 +7,11 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
     url: '/api/checkins',
 
     initialize: function(){
-        this.fetch();
+        this.fetch({
+            data: {
+                fromDate: moment({hour: 0}).valueOf()
+            }
+        });
     },
 
     parse: function(results){

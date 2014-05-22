@@ -3,8 +3,8 @@ module.exports = {
         index: function(req, res){
             var model = app.models.FoursquareCheckin;
             var params = {
-                fromDate: req.query.fromDate ? new Date(req.query.fromDate * 1000) : null,
-                toDate: req.query.toDate ? new Date(req.query.toDate * 1000) : null,
+                fromDate: req.query.fromDate ? (req.query.fromDate / 1000) : null,
+                toDate: req.query.toDate ? (req.query.toDate / 1000) : null,
                 limit: req.query.limit
             };
             model.getCheckins(params).exec(function(error, results){
