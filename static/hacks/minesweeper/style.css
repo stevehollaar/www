@@ -37,7 +37,7 @@ button.new-game .face {
     background-position: 0 2px;
 }
 
-button.new-game.lost .face {
+button.new-game.lost .face, button.new-game .face:active {
     background-image: url('face-lose.png');
 }
 
