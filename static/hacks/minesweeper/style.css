@@ -90,11 +90,15 @@ button.new-game.lost .face {
     background-image: url('flag.png');
 }
 
+.minesweeper.won .cell.flagged {
+    cursor: default;
+}
+
 .cell.mine {
     background-image: url('mine.gif');
 }
 
-.minesweeper.lost .cell, .cell.revealed {
+.cell.revealed {
     box-shadow: inset 1px 1px 6px #666;
     background-color: #eee;
     cursor: default;
