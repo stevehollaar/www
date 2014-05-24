@@ -4,12 +4,18 @@ var dateFormats = {
     timeOnly: 'h:mma'
 };
 
-Handlebars.registerHelper("formatDate", function(datetime, format) {
-    f = dateFormats[format];
-    return moment(datetime).format(f);
+Handlebars.registerHelper('formatDate', function(datetime, format) {
+    return moment(datetime).format(dateFormats[format]);
 });
 
-Handlebars.registerHelper("formatSecondsDate", function(datetime, format) {
-    f = dateFormats[format];
-    return moment(datetime * 1000).format(f);
+Handlebars.registerHelper('formatSecondsDate', function(datetime, format) {
+    return moment(datetime * 1000).format(dateFormats[format]);
+});
+
+Handlebars.registerHelper('pluralize', function(count){
+    if (count !== 1){
+        return 's';
+    } else {
+        return '';
+    }
 });

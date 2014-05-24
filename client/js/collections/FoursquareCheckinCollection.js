@@ -10,12 +10,8 @@ var FoursquareCheckinCollection = Backbone.Collection.extend({
         this.fetch({
             data: {
                 fromDate: moment({hour: 0}).valueOf()
-            }
+            },
+            reset: true
         });
-    },
-
-    parse: function(results){
-        this.set(results);
-        this.trigger('updated');
     }
 });

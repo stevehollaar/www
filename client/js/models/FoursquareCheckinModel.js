@@ -6,7 +6,13 @@ var FoursquareCheckinModel = Backbone.Model.extend({
         venue: null
     },
 
-    initialize: function(){
+    getLatLng: function(){
+        var lat = this.get('venue').location.lat;
+        var lng = this.get('venue').location.lng;
 
+        return {
+            lat: lat,
+            lng: lng
+        };
     }
 });

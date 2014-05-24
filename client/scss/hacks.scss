@@ -7,7 +7,7 @@ section.hacks {
 
         .connecting-line {
             content: '';
-            border: 1px solid $color-accent;
+            border: 2px solid $color-accent-2;
             position: absolute;
             z-index: -1;
 
@@ -29,7 +29,7 @@ section.hacks {
                 max-height: 250px;
                 display: block;
                 margin: 0 auto;
-                border: 2px solid $color-accent;
+                border: 3px solid $color-accent-2;
 
                 @media(max-width:767px){
                     max-width: 100%;
@@ -62,7 +62,7 @@ section.hacks {
                 padding: 10px 15px;
                 color: $color-white;
                 background-color: rgba(7,7,22,1);
-                border: 2px solid $color-accent;
+                border: 3px solid $color-accent-2;
 
                 .hack-title {
                     font-size: 24px;

@@ -1,16 +1,23 @@
+<div class="row">
 {{#if checkins}}
-    <h2>checked in to {{checkins.length}} place{{#unless singleCheckin}}s{{/unless}}</h2>
-    <ul class="checkins">
-        {{#each checkins}}
-            <li>
-                {{#if venue.categories.[0]}}
-                    <img src="{{venue.categories.[0].icon.prefix}}64{{venue.categories.[0].icon.suffix}}">
-                {{/if}}
-                <strong>{{venue.name}}</strong>
-                {{formatSecondsDate createdAt 'timeOnly'}}</li>
+    <div class="col-sm-5 checkins-container">
+        <h2>checked in to {{checkins.length}} place{{#unless singleCheckin}}s{{/unless}}</h2>
+        <ul class="checkins">
+            {{#each checkins}}
+                <li data-id="{{id}}">
+                    {{#if venue.categories.[0]}}
+                        <img src="{{venue.categories.[0].icon.prefix}}64{{venue.categories.[0].icon.suffix}}">
+                    {{/if}}
+                    <strong>{{venue.name}}</strong>
+                    {{formatSecondsDate createdAt 'timeOnly'}}</li>
 
-        {{/each}}
-    </ul>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-sm-7 map-container">
+        <div class="map"></div>
+    </div>
 {{else}}
     <h2>Haven't checked in anywhere</h2>
 {{/if}}
+</div>

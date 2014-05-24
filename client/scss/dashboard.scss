@@ -23,25 +23,63 @@ section.dashboard {
     .foursquare-checkins {
         margin-top: 10px;
         color: $color-black;
-        background-color: $color-compliment-1;
+        background-color: $color-accent-2;
+        border: 1px solid $color-accent-1;
         padding: 10px;
 
         h2 {
+            height: 26px;
             margin: 0;
             font-size: 24px;
+        }
+
+        .checkins-container {
+            max-height: 250px;
         }
 
         ul.checkins {
             margin-top: 10px;
             list-style-type: none;
             padding-left: 15px;
+            max-height: 214px;
+            overflow-y: scroll;
 
             li {
-                height: 32px;
                 line-height: 32px;
+                border: 1px solid $color-accent-2;
+                cursor: pointer;
+
+                &:not(.active):hover {
+                    border: 1px solid $color-white;
+                }
+
+                &.active {
+                    border: 1px solid $color-white;
+                }
 
                 img {
                     height: 32px;
+                }
+            }
+        }
+
+        .map {
+            height: 250px;
+            width: 100%;
+
+            .info-window {
+                h4 {
+                    margin: 5px 0;
+                }
+
+                .time {
+                    font-size: 14px;
+                    font-weight: normal;
+                    margin: 0 4px;
+                }
+
+                p {
+                    margin: 0;
                 }
             }
         }

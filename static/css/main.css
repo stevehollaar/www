@@ -12,27 +12,49 @@ section.dashboard .construction {
 section.dashboard .foursquare-checkins {
   margin-top: 10px;
   color: #070716;
-  background-color: #F0B038;
+  background-color: #FFB91E;
+  border: 1px solid #1EBAD6;
   padding: 10px; }
   section.dashboard .foursquare-checkins h2 {
+    height: 26px;
     margin: 0;
     font-size: 24px; }
+  section.dashboard .foursquare-checkins .checkins-container {
+    max-height: 250px; }
   section.dashboard .foursquare-checkins ul.checkins {
     margin-top: 10px;
     list-style-type: none;
-    padding-left: 15px; }
+    padding-left: 15px;
+    max-height: 214px;
+    overflow-y: scroll; }
     section.dashboard .foursquare-checkins ul.checkins li {
-      height: 32px;
-      line-height: 32px; }
+      line-height: 32px;
+      border: 1px solid #FFB91E;
+      cursor: pointer; }
+      section.dashboard .foursquare-checkins ul.checkins li:not(.active):hover {
+        border: 1px solid #FFFFFF; }
+      section.dashboard .foursquare-checkins ul.checkins li.active {
+        border: 1px solid #FFFFFF; }
       section.dashboard .foursquare-checkins ul.checkins li img {
         height: 32px; }
+  section.dashboard .foursquare-checkins .map {
+    height: 250px;
+    width: 100%; }
+    section.dashboard .foursquare-checkins .map .info-window h4 {
+      margin: 5px 0; }
+    section.dashboard .foursquare-checkins .map .info-window .time {
+      font-size: 14px;
+      font-weight: normal;
+      margin: 0 4px; }
+    section.dashboard .foursquare-checkins .map .info-window p {
+      margin: 0; }
 
 section.hacks .hack {
   margin-top: 30px;
   position: relative; }
   section.hacks .hack .connecting-line {
     content: '';
-    border: 1px solid #1ebad6;
+    border: 2px solid #FFB91E;
     position: absolute;
     z-index: -1; }
     @media (max-width: 767px) {
@@ -49,7 +71,7 @@ section.hacks .hack {
     max-height: 250px;
     display: block;
     margin: 0 auto;
-    border: 2px solid #1ebad6; }
+    border: 3px solid #FFB91E; }
     @media (max-width: 767px) {
       section.hacks .hack .hack-image img {
         max-width: 100%;
@@ -72,9 +94,9 @@ section.hacks .hack {
     display: inline-block;
     width: 100%;
     padding: 10px 15px;
-    color: #fff;
+    color: #FFFFFF;
     background-color: #070716;
-    border: 2px solid #1ebad6; }
+    border: 3px solid #FFB91E; }
     section.hacks .hack .hack-description-container .hack-description .hack-title {
       font-size: 24px; }
 
@@ -82,7 +104,7 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 
 a {
-  color: #1ebad6; }
+  color: #1EBAD6; }
   a:hover {
     color: #0087A3; }
 
@@ -90,18 +112,15 @@ h1.title {
   font-size: 40px;
   text-align: center;
   margin: 10px 0; }
-  h1.title span {
-    color: #1ebad6; }
   @media (min-width: 768px) {
     h1.title {
       font-size: 50px;
       margin: 20px 0; } }
 
 nav {
-  background-color: #070716;
-  border-top: 1px solid #1ebad6; }
+  background-color: #070716; }
   nav .page {
-    color: #fff;
+    color: #FFFFFF;
     text-align: center;
     background-color: #070716;
     padding: 10px 0; }
@@ -114,15 +133,14 @@ nav {
     nav .page.active, nav .page:hover, nav .page:active {
       cursor: default;
       color: #070716;
-      background-color: #1ebad6; }
+      background-color: #1EBAD6; }
     nav .page:not(.active) {
       cursor: pointer; }
 
 .page-description-container {
   background-color: #070716;
-  color: #fff;
-  border-bottom: 1px solid #1ebad6;
-  border-top: 1px solid #1ebad6; }
+  color: #FFFFFF;
+  border-top: 2px solid #FFB91E; }
   .page-description-container .page-description {
     padding: 10px; }
     .page-description-container .page-description:not(.active) {
@@ -142,7 +160,7 @@ main {
       display: none; }
 
 footer {
-  border-top: 1px solid #1ebad6;
+  border-top: 2px solid #FFB91E;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -152,7 +170,13 @@ footer {
   footer p {
     line-height: 40px;
     text-align: center;
-    color: #fff; }
+    color: #FFFFFF; }
+
+.accent-1 {
+  color: #1EBAD6; }
+
+.accent-2 {
+  color: #FFB91E; }
 
 #resume {
   width: 1000px;
