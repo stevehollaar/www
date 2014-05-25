@@ -152,7 +152,12 @@ nav {
         margin-bottom: 0; }
 
 main {
-  margin: 15px 25px 55px; }
+  margin-top: 15px;
+  margin-bottom: 55px; }
+  @media (min-width: 768px) {
+    main {
+      margin-left: 25px;
+      margin-right: 25px; } }
   main section {
     margin: 0 auto;
     max-width: 1000px; }

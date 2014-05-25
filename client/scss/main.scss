@@ -77,7 +77,13 @@ nav {
 }
 
 main {
-    margin: 15px 25px ($footer-height + 15px);
+    margin-top: 15px;
+    margin-bottom: $footer-height + 15px;
+
+    @media(min-width:768px){
+        margin-left: 25px;
+        margin-right: 25px;
+    }
 
     section {
         margin: 0 auto ;
