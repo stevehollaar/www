@@ -7,6 +7,25 @@ h1 {
     font-weight: 300;
 }
 
+.difficulty {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.difficulty li {
+    display: inline-block;
+    margin: 0 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.difficulty li.active {
+    color: #0087A3;
+    cursor: default;
+}
+
 .minesweeper {
     margin: 20px auto 0;
     border: 7px solid black;

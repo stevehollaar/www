@@ -11,6 +11,25 @@ var COLOR_MAP = {
     8: '#777777'
 };
 
+var DIFFICULTY_MAP = {
+    easy: {
+        size: 8,
+        cell_size: 34
+    },
+    medium: {
+        size: 12,
+        cell_size: 32
+    },
+    hard: {
+        size: 16,
+        cell_size: 30
+    },
+    ludicrous: {
+        size: 22,
+        cell_size: 28
+    }
+};
+
 var CellView = Backbone.View.extend({
     className: 'cell',
     model: null,
@@ -158,9 +177,26 @@ var MenuView = Backbone.View.extend({
     }
 });
 
+var DifficultyView = Backbone.View.extend({
+    events: {
+        'click li': 'changeDifficultyEvt_'
+    },
+
+    changeDifficultyEvt_: function(evt){
+        var $target = $(evt.currentTarget);
+        if (!$target.hasClass('active')){
+            this.$el.find('li').removeClass('active');
+            $target.addClass('active');
+            Minesweeper.model.setDifficulty($target.data('difficulty'));
+            Minesweeper.render();
+        }
+    }
+});
+
 var GameView = Backbone.View.extend({
     menuView_: null,
     boardView_: null,
+    difficultyView_: null,
 
     initialize: function(){
         this.menuView_ = new MenuView({
@@ -168,6 +204,9 @@ var GameView = Backbone.View.extend({
         });
         this.boardView_ = new BoardView({
             el: this.el.querySelector('.board')
+        });
+        this.difficultyView_ = new DifficultyView({
+            el: document.querySelector('.difficulty')
         });
     },
 
@@ -205,15 +244,21 @@ var GameView = Backbone.View.extend({
 
 var GameModel = Backbone.Model.extend({
     defaults: {
-        size: 8,
         // Default frequency is ~10 mines for an 8x8 board.
         mineFrequency: 0.15625,
         cells: [],
-        playing: false
+        playing: false,
+        cellSize: null
     },
 
     initialize: function(options){
-        this.set('size', options.size);
+        console.log('initialize model')
+        this.setDifficulty('easy');
+    },
+
+    setDifficulty: function(difficulty){
+        this.set('size', DIFFICULTY_MAP[difficulty].size);
+        this.set('cellSize', DIFFICULTY_MAP[difficulty].cellSize)
     },
 
     endGame: function(){
@@ -242,7 +287,10 @@ var GameModel = Backbone.Model.extend({
     },
 
     createCells: function(){
+        console.log('creating cells')
+
         var size = this.get('size');
+        console.log('size is ' + size)
         var cells = [];
 
         for (var i = 0; i < size; i++){
@@ -333,9 +381,7 @@ var Minesweeper;
 $(function(){
     Minesweeper = new GameView({
         el: document.querySelector('.minesweeper'),
-        model: new GameModel({
-            size: 8
-        })
+        model: new GameModel()
     });
 
     Minesweeper.render();
