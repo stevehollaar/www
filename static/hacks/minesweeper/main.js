@@ -81,14 +81,10 @@ var CellModel = Backbone.Model.extend({
     defaults: {
         x: null,
         y: null,
-        isMine: null,
+        isMine: false,
         adjacentMines: null,
         revealed: false,
         flagged: false
-    },
-
-    initialize: function(){
-        this.set('isMine', Math.random() < Minesweeper.model.get('mineFrequency'));
     },
 
     reveal: function(){
@@ -247,15 +243,24 @@ var GameModel = Backbone.Model.extend({
 
     createCells: function(){
         var size = this.get('size');
+        var cells = [];
+
         for (var i = 0; i < size; i++){
             this.get('cells')[i] = [];
             for (var j = 0; j < size; j++){
-                this.get('cells')[i][j] = new CellModel({
+                var cellModel = new CellModel({
                     x: i,
                     y: j
                 });
+                this.get('cells')[i][j] = cellModel;
+                cells.push(cellModel);
             }
         }
+
+        var numMines = Math.round(this.get('size') * this.get('size') * this.get('mineFrequency'));
+        _.sample(cells, numMines).forEach(function(cell){
+            cell.set('isMine', true);
+        });
 
         for (var i = 0; i < size; i++){
             for (var j = 0; j < size; j++){
