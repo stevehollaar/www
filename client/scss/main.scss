@@ -77,8 +77,7 @@ nav {
 }
 
 main {
-    margin-top: 15px;
-    margin-bottom: $footer-height + 15px;
+    margin: 15px 5px ($footer-height + 15px);
 
     @media(min-width:768px){
         margin-left: 25px;

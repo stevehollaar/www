@@ -152,8 +152,7 @@ nav {
         margin-bottom: 0; }
 
 main {
-  margin-top: 15px;
-  margin-bottom: 55px; }
+  margin: 15px 5px 55px; }
   @media (min-width: 768px) {
     main {
       margin-left: 25px;
@@ -183,77 +182,77 @@ footer {
 .accent-2 {
   color: #FFB91E; }
 
-#resume {
-  width: 1000px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
-
 section.resume, #resume {
-  text-align: left; }
-  section.resume table.default, #resume table.default {
-    border-collapse: collapse;
-    border: 1px solid #ccc;
-    width: 100%; }
-    section.resume table.default td, section.resume table.default th, #resume table.default td, #resume table.default th {
-      padding: 4px 8px;
-      border: 1px solid #ddd; }
-    section.resume table.default th, #resume table.default th {
-      background-color: #eee;
-      font-weight: normal; }
+  max-width: 1000px;
+  margin: 0 auto; }
   section.resume h1, #resume h1 {
     text-align: center;
-    font-size: 42px;
-    font-weight: normal; }
-  section.resume h2, #resume h2 {
+    font-size: 42px; }
+  section.resume .header, #resume .header {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000; }
+    section.resume .header .city, #resume .header .city {
+      font-size: 14px;
+      font-style: italic;
+      margin: 5px 0;
+      line-height: 32px; }
+      @media (max-width: 767px) {
+        section.resume .header .city, #resume .header .city {
+          text-align: center;
+          margin-bottom: 0; } }
+    section.resume .header .title, #resume .header .title {
+      margin: 5px 0;
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center; }
+      @media (max-width: 767px) {
+        section.resume .header .title, #resume .header .title {
+          margin-top: 0; } }
+    section.resume .header ul.contact, #resume .header ul.contact {
+      text-align: right;
+      margin: 5px 0;
+      list-style: none;
+      line-height: 16px; }
+      @media (max-width: 767px) {
+        section.resume .header ul.contact, #resume .header ul.contact {
+          text-align: center;
+          margin-top: 0; } }
+      section.resume .header ul.contact li, #resume .header ul.contact li {
+        word-wrap: break-word; }
+  section.resume .section h4, #resume .section h4 {
     font-size: 18px;
-    font-weight: normal;
     background-color: #333333;
     color: #F8F8F8;
-    padding: 2px 10px;
-    position: relative; }
-  section.resume h3, #resume h3 {
+    padding: 2px 10px; }
+  section.resume .section h5, #resume .section h5 {
     font-size: 15px;
-    font-weight: normal;
     background-color: #EBEBEB;
     border-color: #BCBCBC #DDDDDD #DDDDDD #BCBCBC;
-    border-right: 1px solid #DDDDDD;
     border-style: solid;
     border-width: 1px;
     color: #000000;
-    padding: 1px 10px;
-    position: relative; }
-  section.resume h4, #resume h4 {
+    padding: 1px 10px; }
+  section.resume .section h6, #resume .section h6 {
     font-size: 14px;
-    font-weight: normal;
     width: 100%;
-    border-bottom: #000000 1px solid; }
-  section.resume h5, #resume h5 {
-    font-size: 13px;
-    font-weight: normal;
-    margin: 0 0 5px; }
-  section.resume .frigt, #resume .frigt {
-    float: right; }
-  section.resume .center, #resume .center {
-    text-align: center; }
-  section.resume .left, #resume .left {
-    text-align: left; }
-  section.resume .width100, #resume .width100 {
+    border-bottom: 1px solid #000000;
+    line-height: 20px; }
+    section.resume .section h6 span, #resume .section h6 span {
+      font-style: italic;
+      float: right; }
+  section.resume table, #resume table {
+    border-collapse: collapse;
+    border: 1px solid #CCCCCC;
     width: 100%; }
-  section.resume .width30, #resume .width30 {
-    width: 30%; }
-  section.resume .width50, #resume .width50 {
-    width: 50%; }
-  section.resume .top, #resume .top {
-    vertical-align: top; }
-  section.resume .right, #resume .right {
-    text-align: right; }
-  section.resume #header, #resume #header {
-    border-top: #000000 1px solid;
-    border-bottom: #000000 1px solid; }
-  section.resume #header .title, #resume #header .title {
-    font-size: 18px;
-    margin: 0; }
-  section.resume li, #resume li {
-    margin-bottom: 2px; }
+    section.resume table td, section.resume table th, #resume table td, #resume table th {
+      padding: 4px 8px;
+      border: 1px solid #DDDDDD; }
+    section.resume table th, #resume table th {
+      background-color: #EEEEEE;
+      font-weight: normal; }
+  section.resume .footer, #resume .footer {
+    border-top: 1px solid #CCC;
+    text-align: center;
+    font-size: 14px;
+    line-height: 40px; }
 
