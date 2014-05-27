@@ -94,7 +94,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   
-  return "\n    <h2>Haven't checked in anywhere</h2>\n";
+  return "\n    <div class=\"col-sm-12\">\n        <h2>haven't checked in anywhere</h2>\n    </div>\n";
   }
 
   buffer += "<div class=\"row\">\n";
