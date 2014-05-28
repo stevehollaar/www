@@ -85,6 +85,7 @@ var CellView = Backbone.View.extend({
 
     flagEvt_: function(evt){
         evt.preventDefault();
+        if (!Minesweeper.model.get('playing')) return;
         if (this.model.get('flagged')){
             this.model.unflag();
         } else {
@@ -231,7 +232,7 @@ var GameView = Backbone.View.extend({
     explode: function(){
         this.$el.addClass('lost');
         this.menuView_.showLostButton();
-        this.model.endGame();
+        this.model.lose();
     },
 
     revealCell: function(cellModel){
@@ -241,7 +242,7 @@ var GameView = Backbone.View.extend({
         }
 
         if (this.model.checkWin()){
-            this.model.flagAllMines();
+            this.model.win();
             this.$el.addClass('won');
         }
     }
@@ -266,7 +267,12 @@ var GameModel = Backbone.Model.extend({
         this.set('mineFrequency', BASE_MINE_FREQ * DIFFICULTY_MAP[difficulty].difficultyFactor);
     },
 
-    endGame: function(){
+    win: function(){
+        this.flagAllMines();
+        this.set('playing', false);
+    },
+
+    lose: function(){
         this.revealAll();
         this.set('playing', false);
     },
