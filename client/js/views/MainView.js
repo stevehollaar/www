@@ -16,6 +16,7 @@ var MainView = Backbone.View.extend({
         this.pageViews_ = {
             dashboard: new DashboardPageView({
                 el: this.el.querySelector('section.dashboard'),
+                app: this.app,
                 model: new DashboardModel()
             }),
             hacks: new HacksPageView({

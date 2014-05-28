@@ -3,6 +3,7 @@
  */
 
 var FoursquareCheckinsView = DashboardSectionView.extend({
+    app: null,
     map_: null,
     markers_: null,
     infoWindows_: null,
@@ -12,8 +13,11 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
         'click li': 'selectCheckinEvt_',
     },
 
-    initialize: function(){
+    initialize: function(options){
+        this.app = options.app;
+
         this.listenTo(this.collection, 'reset', this.render.bind(this));
+        this.listenTo(this.app.model, 'change:page', this.resizeMap_.bind(this));
     },
 
     render: function(){
@@ -33,6 +37,12 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
         };
         this.map_ = new google.maps.Map(this.el.querySelector('.map'), mapOptions);
         this.createMarkers_();
+    },
+
+    resizeMap_: function(){
+        setTimeout(function(){
+            google.maps.event.trigger(this.map_, 'resize');
+        }.bind(this), 0);
     },
 
     getTemplateData_: function(){

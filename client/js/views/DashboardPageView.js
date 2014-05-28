@@ -5,11 +5,14 @@
  * @requires CurrentTimeView.js
  */
 var DashboardPageView = PageView.extend({
+    app: null,
     dashboardHeaderView_: null,
     foursquareCheckinsView_: null,
     currentTimeView_: null,
 
     initialize: function(options){
+        this.app = options.app;
+
         this.dashboardHeaderView_ = new DashboardHeaderView({
             el: this.el.querySelector('header')
         });
@@ -25,7 +28,8 @@ var DashboardPageView = PageView.extend({
         if (foursquareCheckinsEl){
             this.foursquareCheckinsView_ = new FoursquareCheckinsView({
                 el: foursquareCheckinsEl,
-                collection: this.model.get('foursquareCheckins')
+                collection: this.model.get('foursquareCheckins'),
+                app: this.app
             });
         }
     },

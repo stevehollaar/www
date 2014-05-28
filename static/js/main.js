@@ -122,9 +122,10 @@ DashboardHeaderView.TIMEFRAMES = {
     custom: 4
 };
 var DashboardSectionView = Backbone.View.extend({
+    app: null,
     expanded_: false,
 
-    initialize: function(){
+    initialize: function(options){
         this.listenTo(this.colection, 'updated', this.render.bind(this));
     },
 
@@ -137,6 +138,7 @@ var DashboardSectionView = Backbone.View.extend({
  */
 
 var FoursquareCheckinsView = DashboardSectionView.extend({
+    app: null,
     map_: null,
     markers_: null,
     infoWindows_: null,
@@ -146,8 +148,11 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
         'click li': 'selectCheckinEvt_',
     },
 
-    initialize: function(){
+    initialize: function(options){
+        this.app = options.app;
+
         this.listenTo(this.collection, 'reset', this.render.bind(this));
+        this.listenTo(this.app.model, 'change:page', this.resizeMap_.bind(this));
     },
 
     render: function(){
@@ -167,6 +172,12 @@ var FoursquareCheckinsView = DashboardSectionView.extend({
         };
         this.map_ = new google.maps.Map(this.el.querySelector('.map'), mapOptions);
         this.createMarkers_();
+    },
+
+    resizeMap_: function(){
+        setTimeout(function(){
+            google.maps.event.trigger(this.map_, 'resize');
+        }.bind(this), 0);
     },
 
     getTemplateData_: function(){
@@ -239,11 +250,14 @@ var CurrentTimeView = Backbone.View.extend({
  * @requires CurrentTimeView.js
  */
 var DashboardPageView = PageView.extend({
+    app: null,
     dashboardHeaderView_: null,
     foursquareCheckinsView_: null,
     currentTimeView_: null,
 
     initialize: function(options){
+        this.app = options.app;
+
         this.dashboardHeaderView_ = new DashboardHeaderView({
             el: this.el.querySelector('header')
         });
@@ -259,7 +273,8 @@ var DashboardPageView = PageView.extend({
         if (foursquareCheckinsEl){
             this.foursquareCheckinsView_ = new FoursquareCheckinsView({
                 el: foursquareCheckinsEl,
-                collection: this.model.get('foursquareCheckins')
+                collection: this.model.get('foursquareCheckins'),
+                app: this.app
             });
         }
     },
@@ -348,6 +363,7 @@ var MainView = Backbone.View.extend({
         this.pageViews_ = {
             dashboard: new DashboardPageView({
                 el: this.el.querySelector('section.dashboard'),
+                app: this.app,
                 model: new DashboardModel()
             }),
             hacks: new HacksPageView({

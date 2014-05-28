@@ -1,7 +1,8 @@
 var DashboardSectionView = Backbone.View.extend({
+    app: null,
     expanded_: false,
 
-    initialize: function(){
+    initialize: function(options){
         this.listenTo(this.colection, 'updated', this.render.bind(this));
     },
 
