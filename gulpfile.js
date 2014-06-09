@@ -10,13 +10,14 @@ var defineModule = require('gulp-define-module');
 var declare = require('gulp-declare');
 var rename = require('gulp-rename');
 
-var JS_DIRS = ['client/js/*.js', 'client/js/*/*.js'];
+var JS_CLIENT_DIRS = ['client/js/*.js', 'client/js/*/*.js'];
+var JS_SERVER_DIRS = ['server/*/.js', 'server/*/*.js', 'server/*/*/*.js'];
 var SASS_DIRS = ['client/scss/*.scss']
 var HBS_DIRS = ['client/hbs/*.hbs'];
 
 // Lint Task
 gulp.task('lint', function() {
-    return gulp.src(JS_DIRS)
+    return gulp.src(JS_CLIENT_DIRS.concat(JS_SERVER_DIRS))
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
@@ -43,7 +44,7 @@ gulp.task('templates', function(){
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src(JS_DIRS)
+    return gulp.src(JS_CLIENT_DIRS)
         .pipe(resolveDependencies({
             pattern: /\* @requires [\s-]*(.*?\.js)/g
         }))
@@ -57,7 +58,8 @@ gulp.task('scripts', function() {
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch(HBS_DIRS, ['templates']);
-    gulp.watch(JS_DIRS, ['lint', 'scripts']);
+    gulp.watch(JS_CLIENT_DIRS, ['lint', 'scripts']);
+    gulp.watch(JS_SERVER_DIRS, ['lint']);
     gulp.watch(SASS_DIRS, ['sass']);
 });
 

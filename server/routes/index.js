@@ -8,7 +8,7 @@ module.exports.hacks = {
     index: function(req, res){
         res.render('index', {
             page: 'hacks'
-        })
+        });
     },
     falling: function(req, res){
         res.sendfile('static/hacks/falling/index.html');
@@ -22,7 +22,7 @@ module.exports.resume = {
     index: function(req, res){
         res.render('index', {
             page: 'resume'
-        })
+        });
     },
     html: function(req, res){
         res.render('resume');

@@ -23,7 +23,7 @@ FoursquareHavester.prototype.setup = function(){
 };
 
 FoursquareHavester.prototype.startPolling = function(){
-    this.pollInterval = setInterval(this.updateCheckinsLatest.bind(this), this.POLL_INTERVAL)
+    this.pollInterval = setInterval(this.updateCheckinsLatest.bind(this), this.POLL_INTERVAL);
 };
 
 FoursquareHavester.prototype.stopPolling = function(){
@@ -61,7 +61,7 @@ FoursquareHavester.prototype.removeCheckins = function(){
         if (error){
             console.error('FoursquareHavester: ' + error);
         } else {
-            console.log('FoursquareHavester: ' + results + ' checkins removed')
+            console.log('FoursquareHavester: ' + results + ' checkins removed');
         }
     });
 };
@@ -72,7 +72,7 @@ FoursquareHavester.prototype.updateCheckins_ = function(options){
     console.log('FoursquareHavester: Getting checkins with offset ' + offset + ' and limit ' + limit);
 
     var updateRequest = Q.defer();
-    var options = {
+    options = {
         url: app.config.foursquare.checkinsUrl,
         qs: {
             oauth_token: app.config.foursquare.accessToken,
@@ -109,7 +109,7 @@ FoursquareHavester.prototype.upsertCheckin_ = function(checkin){
     };
     this.checkinModel.findOneAndUpdate(query, checkin, options, function(err){
         if (err){
-            console.log('FoursquareHavester: ' + error)
+            console.log('FoursquareHavester: ' + error);
         }
     });
 };
