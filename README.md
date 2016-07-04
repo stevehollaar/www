@@ -1,5 +1,3 @@
 stevehollaar.com
 ===
-A work-in-progress towards a redesigned personal site.
-
-
+Old personal site
